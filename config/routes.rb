@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :dashboard, only: :show
   end
+
+  namespace :monster do
+    resource :dashboard, only: :show
+  end
 end

@@ -90,6 +90,8 @@ GEM
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.13.1)
+    font_awesome5_rails (1.3.0)
+      railties (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.0)
@@ -233,6 +235,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise (~> 4.7, >= 4.7.3)
+  font_awesome5_rails (~> 1.3)
   haml (~> 5.2)
   jbuilder (~> 2.7)
   jquery-rails (~> 4.4)
