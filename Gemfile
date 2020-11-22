@@ -4,9 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootstrap', '~> 4.5', '>= 4.5.3'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'haml', '~> 5.2'
 gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails', '~> 4.4'
 gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'popper_js', '~> 1.16'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 gem 'sass-rails', '>= 6'
