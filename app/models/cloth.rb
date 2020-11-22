@@ -1,4 +1,7 @@
 class Cloth < ApplicationRecord
+  # Active Storage
+  has_one_attached :picture
+
   # Validations
   validates :name, :enabled, presence: true
 
