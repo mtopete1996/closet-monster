@@ -1,0 +1,2 @@
+module Monster::ClothsHelper
+end

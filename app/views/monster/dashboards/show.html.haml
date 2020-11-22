@@ -7,6 +7,7 @@
 
 .row.my-3
   .col-md-3
-    .card.card-body.bg-light.text-center
-      = fa_icon :tshirt, size: '4x'
-      .mt-3 Clothes
+    = link_to monster_cloths_path, class: 'link-style-less' do
+      .card.card-body.bg-light.text-center
+        = fa_icon :tshirt, size: '4x'
+        .mt-3 Clothes

@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   namespace :monster do
     resource :dashboard, only: :show
+    resources :cloths
   end
 end

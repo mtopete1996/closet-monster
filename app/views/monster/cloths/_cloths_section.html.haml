@@ -1,0 +1,7 @@
+.row
+  .col-md-3
+    = cloths.find_each do |cloth|
+      .card.card-body.bg-light
+        %h4= cloth.name
+        = image_tag url_for(cloth.picture), size: '200x200' if cloth.picture.attached?
+        %p Last time worn #{format_datetime(cloth.last_time_worn, format: :dby)}
