@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ClothTest < ActiveSupport::TestCase
   test 'CREATE cloth w valid data' do
-    data = { name: :my_tshirt, last_time_worn: Date.yesterday }
+    data = { name: :my_tshirt, last_time_worn: Date.yesterday, user: user(:user_admin) }
     cloth = Cloth.create data
 
     assert_not_nil cloth
@@ -16,7 +16,7 @@ class ClothTest < ActiveSupport::TestCase
     cloth = Cloth.create data
 
     assert cloth.invalid?, 'Cloth should be invalid'
-    assert_not cloth.save
+    assert_not cloth.save, 'Cloth should not be saved'
   end
 
   test 'CREATE cloth w last_worn is future' do
@@ -24,6 +24,6 @@ class ClothTest < ActiveSupport::TestCase
     cloth = Cloth.create data
 
     assert cloth.invalid?, 'Cloth should be invalid'
-    assert_not cloth.save
+    assert_not cloth.save, 'Cloth should not be saved'
   end
 end

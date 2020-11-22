@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :clothes
+
+  # Validations
+  validates :name, :username, :email, :password, presence: true
 end
