@@ -5,9 +5,5 @@ module Monster
     def initialize
       @resource = Cloth
     end
-
-    # def index
-    #   @cloths = Cloth.all
-    # end
   end
 end
