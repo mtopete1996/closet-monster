@@ -1,0 +1,15 @@
+= form_for cloth, url: monster_cloths_path, method: :post do |f|
+  .form-group
+    = f.label 'Name: '
+    = f.text_field :name, class: 'form-control'
+
+    .form-group
+      = f.label 'Last Time Worn: '
+      = f.date_field :last_time_worn, class: 'form-control'
+    
+    .form-group
+      = f.label 'Fotito: '
+      = f.file_field :picture, class: 'form-control'
+
+    .form-group
+      = f.submit class: 'btn btn-success'

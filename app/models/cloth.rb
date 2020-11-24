@@ -6,7 +6,7 @@ class Cloth < ApplicationRecord
   belongs_to :user
 
   # Validations
-  validates :name, :enabled, :last_time_worn, presence: true
+  validates :name, :enabled, presence: true
 
   validate :last_worn_is_past
 

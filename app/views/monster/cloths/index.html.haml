@@ -1,2 +1,8 @@
-%h4.mb-4 Cloths Section
+%h1.my-4.text-center Cloths Section
+
+.d-flex.justify-content-end
+  = link_to new_monster_cloth_path, class: 'btn btn-success' do
+    = fa_icon(:plus, text: 'New cloth')
+
+= render 'shared/flash_messages' if flash.present?
 = render 'cloths_section', cloths: @cloths
