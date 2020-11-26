@@ -1,4 +1,17 @@
 en:
+  welcome:
+    organize:
+      title: Organize
+      text: Keep your clothes, shoes, and more stuff organized and inventarized
+    last_time:
+      title: Last time worn
+      text: Get to know when was the last time you worn clothes
+    simple:
+      title: Simple
+      text: The system is pretty simple and intuitive to use for everyone
+    improvements:
+      title: Continous Updates
+      text: This system is always improving, if you have any kind of problems let us know on the support section
   utils:
     date:
       dmy: '%-d/%_m/%y'

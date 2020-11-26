@@ -1,0 +1,18 @@
+%nav.navbar.navbar-expand-lg.bg-light-brown
+  %navbar-brand.h5.font-weight-bolder.mt-1 Closet Monster
+  %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
+                          data: { target: '#navbarContent', toggle: :collapse }, type: :button }
+    %span.navbar-toggler-icon
+  #navbarContent.collapse.navbar-collapse
+    %ul.navbar-nav.ml-auto
+      - if current_user
+        %li.nav-item.dropdown
+          %a#userDropdown.nav-link.dropdown-toggle{ aria: { expanded: false, haspopup: true },
+                                                      data: { toggle: :dropdown }, role: :button }
+            Dropdown
+          .dropdown-menu{'aria-labelledby' => :userDropdown}
+            %a.dropdown-item{:href => "#"} Log Out
+      - else
+        %li.nav-item.active
+          = link_to 'Log In', '#', class: 'nav-link link-style-less'
+          %span.sr-only (current)
