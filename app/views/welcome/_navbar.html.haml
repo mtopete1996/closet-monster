@@ -13,6 +13,7 @@
           .dropdown-menu{'aria-labelledby' => :userDropdown}
             %a.dropdown-item{:href => "#"} Log Out
       - else
-        %li.nav-item.active
-          = link_to 'Log In', '#', class: 'nav-link link-blue-charcoal'
-          %span.sr-only (current)
+        - if controller_name != 'log_in'
+          %li.nav-item.active
+            = link_to 'Log In', '#', class: 'nav-link link-blue-charcoal'
+            %span.sr-only (current)
