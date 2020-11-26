@@ -1,5 +1,5 @@
 %nav.navbar.navbar-expand-lg.bg-light-brown
-  %navbar-brand.h5.font-weight-bolder.mt-1 Closet Monster
+  %navbar-brand.h5.text-blue-charcoal.mt-1 Closet Monster
   %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
     %span.navbar-toggler-icon
@@ -14,5 +14,5 @@
             %a.dropdown-item{:href => "#"} Log Out
       - else
         %li.nav-item.active
-          = link_to 'Log In', '#', class: 'nav-link link-style-less'
+          = link_to 'Log In', '#', class: 'nav-link link-blue-charcoal'
           %span.sr-only (current)

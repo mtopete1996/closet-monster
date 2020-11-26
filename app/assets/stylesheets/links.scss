@@ -1,14 +1,16 @@
 @import 'colors';
 
-%styless-link {
-  color: $black;
+@mixin styless-link($color) {
+  color: $color;
   text-decoration: none;
+  &:hover {
+    color: darken($color, 5%);
+  }
+  &:visited { color: $color; }
 }
 
 a {
-  &.link-style-less {
-    @extend %styless-link;
-    &:hover { @extend %styless-link; }
-    &:visited { @extend %styless-link; }
-  }
+  &.link-black { @include styless-link($black); }
+  &.link-gray { @include styless-link($gray); }
+  &.link-blue-charcoal { @include styless-link($blue-charcoal); }
 }
