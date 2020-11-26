@@ -1,4 +1,11 @@
-= form_for cloth, url: monster_cloths_path, method: :post do |f|
+- method = action_name == 'new' || 'create' ? :post : :put
+
+= form_with model: [:monster, cloth], method: method, local: true do |f|
+  - if cloth.errors.present?
+    %ul.alert.alert-danger
+      - cloth.errors.full_messages.each do |message|
+        %li= message
+
   .form-group
     = f.label 'Name: '
     = f.text_field :name, class: 'form-control'
@@ -6,10 +13,14 @@
     .form-group
       = f.label 'Last Time Worn: '
       = f.date_field :last_time_worn, class: 'form-control'
-    
+
     .form-group
       = f.label 'Fotito: '
-      = f.file_field :picture, class: 'form-control'
+      = f.file_field :picture, accept: 'image/png,image/jpg,image/jpeg', class: 'form-control'
 
     .form-group
       = f.submit class: 'btn btn-success'
+
+- if action_name == 'edit'
+  = link_to 'Delete cloth', monster_cloth_path(cloth), method: :delete, class: 'btn btn-danger',
+            confirm: 'Do you really wanna get rid of this cloth?'

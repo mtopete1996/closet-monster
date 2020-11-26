@@ -7,7 +7,8 @@ class Cloth < ApplicationRecord
 
   # Validations
   validates :name, :enabled, presence: true
-
+  validates :picture, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+  
   validate :last_worn_is_past
 
   # Instance methods
