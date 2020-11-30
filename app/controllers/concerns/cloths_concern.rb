@@ -61,7 +61,6 @@ module ClothsConcern
   end
 
   def index_path
-    byebug
     Rails.application.routes.url_helpers.send("#{module_name}_cloths_path")
   end
 
@@ -69,3 +68,4 @@ module ClothsConcern
     self.class.module_parent.name.downcase
   end
 end
+
