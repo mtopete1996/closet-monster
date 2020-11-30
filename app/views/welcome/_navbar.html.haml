@@ -2,13 +2,13 @@
   %navbar-brand.h5.text-blue-charcoal.mt-1 Closet Monster
   %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
-    %span.navbar-toggler-icon
+    = fa_icon(:bars)
   #navbarContent.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto
       - if current_user
         %li.nav-item.dropdown
           %a#userDropdown.nav-link.dropdown-toggle{ aria: { expanded: false, haspopup: true },
-                                                      data: { toggle: :dropdown }, role: :button }
+                                                    data: { toggle: :dropdown }, role: :button }
             = current_user.name
           .dropdown-menu{'aria-labelledby' => :userDropdown}
             = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item'
