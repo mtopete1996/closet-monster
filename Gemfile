@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'active_storage_validations', '~> 0.9.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'font_awesome5_rails', '~> 1.3'
 gem 'haml', '~> 5.2'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'

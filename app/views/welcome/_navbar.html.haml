@@ -9,11 +9,11 @@
         %li.nav-item.dropdown
           %a#userDropdown.nav-link.dropdown-toggle{ aria: { expanded: false, haspopup: true },
                                                       data: { toggle: :dropdown }, role: :button }
-            Dropdown
+            = current_user.name
           .dropdown-menu{'aria-labelledby' => :userDropdown}
-            %a.dropdown-item{:href => "#"} Log Out
+            = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item'
       - else
         - if controller_name != 'log_in'
           %li.nav-item.active
-            = link_to 'Log In', '#', class: 'nav-link link-blue-charcoal'
+            = link_to 'Log In', new_user_session_path, class: 'nav-link link-blue-charcoal'
             %span.sr-only (current)

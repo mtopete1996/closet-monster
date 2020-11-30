@@ -1,5 +1,5 @@
 module Monster
   class DashboardsController < ApplicationController
-    def show; end
+    include DashboardConcern
   end
 end

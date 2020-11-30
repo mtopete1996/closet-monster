@@ -1,5 +1,5 @@
 module Admin
   class DashboardsController < ApplicationController
-    def show; end
+    include DashboardsConcern
   end
 end

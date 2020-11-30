@@ -1,0 +1,8 @@
+- link = Rails.application.routes.url_helpers.send("edit_#{module_name}_cloth_path", cloth)
+
+= link_to link, class: 'link-black col-lg-3 card card-body bg-light text-center m-3' do
+  - if cloth.picture.attached?
+    = image_tag url_for(cloth.picture.variant(resize: '135x180')), size: '135x180', class: 'd-block mx-auto mb-3'
+  %h4= cloth.name
+  - if cloth.last_time_worn.present?
+    %p Last time worn #{format_datetime(cloth.last_time_worn, format: :dby)}
