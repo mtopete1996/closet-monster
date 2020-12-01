@@ -17,6 +17,7 @@ module ApplicationHelper
   end
 
   def module_name
-    controller.class.module_parent.name.downcase
+    name = controller.class.module_parent.name.downcase
+    return name if name != 'object'
   end
 end

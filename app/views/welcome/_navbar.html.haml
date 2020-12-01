@@ -1,5 +1,7 @@
+- dashboard_link = Rails.application.routes.url_helpers.send("#{current_user.role}_dashboard_path")
+
 %nav.navbar.navbar-expand-lg.bg-light-brown
-  %navbar-brand.h5.text-blue-charcoal.mt-1 Closet Monster
+  %navbar-brand.h5.text-light.mt-1 Closet Monster
   %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
     = fa_icon(:bars)
@@ -7,11 +9,12 @@
     %ul.navbar-nav.ml-auto
       - if current_user
         %li.nav-item.dropdown
-          %a#userDropdown.nav-link.dropdown-toggle{ aria: { expanded: false, haspopup: true },
+          %a#userDropdown.nav-link.dropdown-toggle.text-light{ aria: { expanded: false, haspopup: true },
                                                     data: { toggle: :dropdown }, role: :button }
             = current_user.name
-          .dropdown-menu{'aria-labelledby' => :userDropdown}
-            = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item'
+          .dropdown-menu.bg-light-brown{'aria-labelledby' => :userDropdown}
+            = link_to 'Dashboard', dashboard_link, class: 'dropdown-item text-light'
+            = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item text-light'
       - else
         - if controller_name != 'log_in'
           %li.nav-item.active
