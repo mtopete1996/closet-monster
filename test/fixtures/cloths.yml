@@ -1,11 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+cloth_white_shirt:
+  name: The White Shirt
+  enabled: true
+  last_time_worn: null
 
-one:
-  name: MyString
-  enabled: false
-  last_time_worn: 2020-11-21
+cloth_black_pants:
+  name: Black Pants
+  enabled: true
+  last_time_worn: 2010-10-10
 
-two:
-  name: MyString
+cloth_disabled_shirt:
+  name: My Shirt
   enabled: false
-  last_time_worn: 2020-11-21
+  last_time_worn: 2009-09-09

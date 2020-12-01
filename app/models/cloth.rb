@@ -1,5 +1,5 @@
 class Cloth < ApplicationRecord
-  # Active Storage
+  # Configuration
   has_one_attached :picture
 
   # Associations

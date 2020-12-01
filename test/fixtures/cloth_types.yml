@@ -1,0 +1,8 @@
+cloth_type_shirts:
+  name: T-Shirts
+
+cloth_type_pants:
+  name: Pants
+
+cloth_type_polo:
+  name: Polo

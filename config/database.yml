@@ -3,10 +3,8 @@ development:
   database: closet_monster_dev
 
 test:
-  adapter: sqlite3
-  database: db/test_db/closet_monster_test.sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+  database: closet_monster_test
 
 # production:
 #   <<: *default

@@ -1,11 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 user_admin:
   name: Porfirio Bayardo
   username: porfiriobayis
+  role: admin
   email: porfirio@test.com
 
 user_monster:
   name: Manuel Topete
   username: mtopete
+  role: monster
   email: manuel@testing.com
