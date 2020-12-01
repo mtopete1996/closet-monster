@@ -1,4 +1,4 @@
-- dashboard_link = Rails.application.routes.url_helpers.send("#{current_user.role}_dashboard_path")
+- dashboard_link = Rails.application.routes.url_helpers.send("#{current_user.role}_dashboard_path") if current_user
 
 %nav.navbar.navbar-expand-lg.bg-light-brown
   %navbar-brand.h5.text-light.mt-1 Closet Monster
