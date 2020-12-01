@@ -1,0 +1,12 @@
+%h1.my-4.text-center Types of Cloth Section
+
+.d-flex.justify-content-end.mb-4
+  = link_to link_for(prefix: 'new', page: 'cloth_type'), class: 'btn btn-success' do
+    = fa_icon(:plus, text: 'New type')
+
+= render 'shared/flash_messages' if flash.present?
+
+- if @cloth_types.present?
+  = render 'admin/cloth_types/table', cloth_types: @cloth_types
+- else
+  .alert.alert-info Looks like you haven't created any type of cloth

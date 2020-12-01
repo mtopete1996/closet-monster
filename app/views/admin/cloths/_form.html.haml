@@ -19,5 +19,5 @@
     = f.submit class: 'btn btn-success'
 
 - if action_edit?
-  = link_to 'Delete cloth', monster_cloth_path(cloth), method: :delete, class: 'btn btn-danger',
-            confirm: 'Do you really wanna get rid of this cloth?'
+  = link_to 'Delete cloth', link_for(page: 'cloth', params: { id: cloth.id}), method: :delete,
+                            class: 'btn btn-danger', data: { confirm: 'Do you really wanna get rid of this cloth?' }

@@ -1,0 +1,10 @@
+.container
+  = render '/shared/flash_messages' if flash.present?
+
+  .text-center
+    %h1.mb-4 #{module_name.titleize} Dashboard
+
+  .row.my-3
+    = render 'admin/dashboards/section', name: 'Clothes', icon_name: :tshirt, path: link_for(page: 'cloths')
+    = render 'admin/dashboards/section', name: 'Types of cloth', icon_name: :socks,
+                                         path: link_for(page: 'cloth_types')

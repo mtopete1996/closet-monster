@@ -16,6 +16,16 @@ module ApplicationHelper
     timestamp.strftime(t("utils.date.#{format}"))
   end
 
+  def link_for(prefix: '', page:, params: {}, mod: nil)
+    routes = Rails.application.routes.url_helpers
+    return routes.root_path if current_user.blank? && module_name.blank? && mod.blank?
+
+    method = (mod || module_name) + '_' + page + '_path'
+    method.prepend(prefix, '_') if prefix.present?
+
+    routes.send(method, **params)
+  end
+
   def module_name
     name = controller.class.module_parent.name.downcase
     return name if name != 'object'

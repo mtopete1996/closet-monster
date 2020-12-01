@@ -1,5 +1,5 @@
 module Monster
   class DashboardsController < ApplicationController
-    include DashboardConcern
+    include DashboardsConcern
   end
 end

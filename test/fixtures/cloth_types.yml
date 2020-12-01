@@ -1,8 +1,11 @@
 cloth_type_shirts:
   name: T-Shirts
+  user: user_admin
 
 cloth_type_pants:
   name: Pants
+  user: user_monster
 
 cloth_type_polo:
   name: Polo
+  user: user_monster

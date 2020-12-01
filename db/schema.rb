@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_055600) do
+ActiveRecord::Schema.define(version: 2020_12_02_052512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_055600) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_cloth_types_on_user_id"
   end
 
   create_table "cloths", force: :cascade do |t|
@@ -49,6 +51,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_055600) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.bigint "cloth_type_id"
+    t.index ["cloth_type_id"], name: "index_cloths_on_cloth_type_id"
     t.index ["user_id"], name: "index_cloths_on_user_id"
   end
 
@@ -73,5 +77,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_055600) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cloth_types", "users"
+  add_foreign_key "cloths", "cloth_types"
   add_foreign_key "cloths", "users"
 end

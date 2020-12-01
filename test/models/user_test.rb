@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test 'CREATE user w valid data' do
-    data = { name: :mr_test, username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123 }
+    data = { name: :mr_test, username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123, role: :admin }
     user = User.create data
 
     assert_not_nil user
@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'CREATE user w nil name' do
-    data = { username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123 }
+    data = { username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123, role: :monster }
     user = User.new data
 
     assert_not_nil user
@@ -22,7 +22,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'CREATE user w nil email' do
-    data = { name: :mr_test, username: :test_mr, password: :$eCrEt123 }
+    data = { name: :mr_test, username: :test_mr, password: :$eCrEt123, role: :monster }
     user = User.new data
 
     assert_not_nil user

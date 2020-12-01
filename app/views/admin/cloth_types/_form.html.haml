@@ -1,0 +1,15 @@
+- method = action_new? || action_create? ? :post : :put
+
+= form_with model: [module_name, cloth_type], method: method, local: true do |f|
+  = render '/shared/error_messages', resource: cloth_type
+
+  .form-group
+    = f.label 'Name: '
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.submit class: 'btn btn-success'
+
+- if action_edit?
+  = link_to 'Delete Type', link_for(page: 'cloth_type', params: { id: cloth_type.id}), method: :delete, class: 'btn btn-danger',
+            data: { confirm: 'Do you really wanna get rid of this type?' }

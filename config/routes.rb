@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resource :dashboard, only: :show
+    root to: 'dashboards#show'
     resources :cloths, except: :show
+    resources :cloth_types, except: :show
   end
 
   namespace :monster do
-    resource :dashboard, only: :show
+    root to: 'dashboards#show'
     resources :cloths, except: :show
+    resources :cloth_types, except: :show
   end
 end

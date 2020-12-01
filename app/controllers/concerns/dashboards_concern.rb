@@ -6,6 +6,6 @@ module DashboardsConcern
   end
 
   def show
-    render 'admin/dashboard/show'
+    render 'admin/dashboards/show'
   end
 end
