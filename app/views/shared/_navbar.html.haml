@@ -1,7 +1,8 @@
 - dashboard_link = Rails.application.routes.url_helpers.send("#{current_user.role}_dashboard_path") if current_user
 
-%nav.navbar.navbar-expand-lg.bg-light-brown
-  %navbar-brand.h5.text-light.mt-1 Closet Monster
+%nav.navbar.navbar-expand-lg.bg-light-brown.mb-3
+  %navbar-brand
+    = link_to 'Closet Monster', dashboard_link, class: 'h5 text-light mt-1'
   %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
     = fa_icon(:bars)
@@ -18,5 +19,5 @@
       - else
         - if controller_name != 'log_in'
           %li.nav-item.active
-            = link_to 'Log In', new_user_session_path, class: 'nav-link link-blue-charcoal'
+            = link_to 'Log In', new_user_session_path, class: 'nav-link text-light'
             %span.sr-only (current)

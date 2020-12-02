@@ -1,4 +1,4 @@
-- types = { success: :info, error: :danger }.with_indifferent_access
+- types = { success: :success, error: :danger, notice: :info, alert: :warning }.with_indifferent_access
 
 - flash.each do |name, message|
   .alert.my-3{ class: "alert-#{types[name]}" }= message
