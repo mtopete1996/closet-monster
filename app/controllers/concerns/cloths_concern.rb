@@ -6,7 +6,7 @@ module ClothsConcern
   end
 
   def index
-    @cloths = current_user_cloths
+    @cloths = current_user.cloths.with_attached_picture
     render 'admin/cloths/index', layout: 'application'
   end
 
@@ -45,8 +45,6 @@ module ClothsConcern
 
   attr_reader :cloth
 
-  delegate :cloths, :role, to: :current_user, prefix: true
-
   def find_cloth
     @find_cloth ||= Cloth.find_by(id: params[:id])
   end
@@ -68,4 +66,3 @@ module ClothsConcern
     self.class.module_parent.name.downcase
   end
 end
-
