@@ -1,7 +1,6 @@
-- title_link = current_user.present? ? link_for(page: 'root') : '#'
 %nav.navbar.navbar-expand-lg.bg-light-brown.mb-3
   %navbar-brand
-    = link_to 'Closet Monster', title_link, class: 'h5 text-light mt-1'
+    = link_to 'Closet Monster', link_for(page: 'root'), class: 'h5 text-light mt-1'
   %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
     = fa_icon(:bars)
