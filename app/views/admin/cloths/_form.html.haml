@@ -12,8 +12,12 @@
     = f.date_field :last_time_worn, class: 'form-control'
 
   .form-group
-    = f.label 'Fotito: '
+    = f.label 'Picture: '
     = f.file_field :picture, accept: 'image/png,image/jpg,image/jpeg', class: 'form-control'
+
+  .form-group
+    = f.label 'Type:'
+    = f.select :cloth_type_id, types_options, { include_blank: true }, class: 'form-control'
 
   .form-group
     = f.submit class: 'btn btn-success'

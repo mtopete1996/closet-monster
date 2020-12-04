@@ -7,36 +7,37 @@ module ClothsConcern
   end
 
   def index
-    @cloths = current_user.cloths.with_attached_picture
+    @cloths = current_user.cloths.by_last_time_worn.with_attached_picture
     render 'admin/cloths/index'
   end
 
   def new
-    @cloth = Cloth.new
+    @cloth_data = cloth_data
     render 'admin/cloths/new'
   end
 
   def create
-    @cloth = Cloth.new(permited_params)
-    return save_successful(action: :saved) if cloth.save
+    @cloth_data = cloth_data(permited_params)
+    return save_successful(action: :saved) if cloth_data.cloth.save
 
     render 'admin/cloths/new'
   end
 
   def edit
-    @cloth = find_cloth
+    @cloth_data = cloth_data(id: params[:id])
     render 'admin/cloths/edit'
   end
 
   def update
-    @cloth = find_cloth
-    return save_successful(action: :updated) if cloth.update(permited_params)
+    @cloth_data = cloth_data(id: params[:id])
+    return save_successful(action: :updated) if cloth_data.cloth.update(permited_params)
 
     render 'admin/cloths/edit'
   end
 
   def destroy
-    return save_successful(action: :deleted) if find_cloth.destroy
+    @cloth_data = cloth_data(id: params[:id])
+    return save_successful(action: :deleted) if cloth_data.cloth.destroy
 
     flash[:error] = 'There has been a problem deleting this record, please contact support'
     render 'admin/cloths/index'
@@ -46,12 +47,12 @@ module ClothsConcern
 
   attr_reader :cloth
 
-  def find_cloth
-    @find_cloth ||= Cloth.find_by(id: params[:id])
+  def cloth_data(data = {})
+    @cloth_data ||= ClothData.new(data.merge(user: current_user))
   end
 
   def permited_params
-    params.required(:cloth).permit(:name, :last_time_worn, :picture).merge(user: current_user)
+    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id)
   end
 
   def save_successful(action:)

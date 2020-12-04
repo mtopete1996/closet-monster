@@ -4,7 +4,7 @@ class Cloth < ApplicationRecord
 
   # Associations
   belongs_to :user
-  has_one :cloth_type
+  belongs_to :cloth_type, optional: true
 
   # Validations
   validates :name, :enabled, presence: true
@@ -13,6 +13,7 @@ class Cloth < ApplicationRecord
   validate :last_worn_is_past
 
   # Scopes
+  scope :by_last_time_worn, -> { order(last_time_worn: :asc) }
 
   # Delegates
 
