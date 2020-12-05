@@ -6,6 +6,6 @@ test:
   adapter: postgresql
   database: closet_monster_test
 
-# production:
-#   <<: *default
-#   database: db/production.sqlite3
+production:
+  adapter: postgresql
+  database: closet_monster_prod
