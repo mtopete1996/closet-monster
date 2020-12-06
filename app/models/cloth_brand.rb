@@ -1,4 +1,4 @@
-class ClothType < ApplicationRecord
+class ClothBrand < ApplicationRecord
   # Configuration
 
   # Associations
@@ -18,7 +18,7 @@ class ClothType < ApplicationRecord
 
   # Class methods
   class << self
-    def user_types(user)
+    def user_brands(user)
       where(user: user).or(where(user_id: nil))
     end
   end

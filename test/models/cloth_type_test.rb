@@ -5,7 +5,7 @@ class ClothTypeTest < ActiveSupport::TestCase
     cloth_type = ClothType.create name: :dress, user: user_monster
 
     assert_not_nil cloth_type
-    assert cloth_type.valid?, 'Cloth should be valid'
+    assert cloth_type.valid?, 'ClothType should be valid'
     assert cloth_type.persisted?, 'ClothType should have persisted'
     assert 'dress', cloth_type.name
   end
@@ -14,11 +14,10 @@ class ClothTypeTest < ActiveSupport::TestCase
     cloth_type = ClothType.create name: nil
 
     assert_not_nil cloth_type
-    assert cloth_type.invalid?, 'Cloth should be invalid'
+    assert cloth_type.invalid?, 'ClothType should be invalid'
     assert_not cloth_type.persisted?, 'ClothType should have not persisted'
 
     errors = cloth_type.errors.full_messages
-    assert_includes errors, 'User must exist', 'There should be an error of user existance'
     assert_includes errors, "Name can't be blank", 'There should be an error of name presence'
   end
 
@@ -26,11 +25,8 @@ class ClothTypeTest < ActiveSupport::TestCase
     cloth_type = ClothType.create name: 'Manuel'
 
     assert_not_nil cloth_type
-    assert cloth_type.invalid?, 'Cloth should be invalid'
-    assert_not cloth_type.persisted?, 'ClothType should have not persisted'
-
-    errors = cloth_type.errors.full_messages
-    assert_includes errors, 'User must exist', 'There should be an error of user existance'
+    assert cloth_type.valid?, 'ClothType should be valid'
+    assert cloth_type.persisted?, 'ClothType should have persisted'
   end
 
   private

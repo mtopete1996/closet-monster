@@ -5,6 +5,7 @@ class Cloth < ApplicationRecord
   # Associations
   belongs_to :user
   belongs_to :cloth_type, optional: true
+  belongs_to :cloth_brand, optional: true
 
   # Validations
   validates :name, :enabled, presence: true

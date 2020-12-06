@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_052512) do
+ActiveRecord::Schema.define(version: 2020_12_06_053708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2020_12_02_052512) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cloth_brands", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_cloth_brands_on_user_id"
+  end
+
   create_table "cloth_types", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -52,6 +60,8 @@ ActiveRecord::Schema.define(version: 2020_12_02_052512) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "cloth_type_id"
+    t.bigint "cloth_brand_id"
+    t.index ["cloth_brand_id"], name: "index_cloths_on_cloth_brand_id"
     t.index ["cloth_type_id"], name: "index_cloths_on_cloth_type_id"
     t.index ["user_id"], name: "index_cloths_on_user_id"
   end
@@ -77,7 +87,9 @@ ActiveRecord::Schema.define(version: 2020_12_02_052512) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cloth_brands", "users"
   add_foreign_key "cloth_types", "users"
+  add_foreign_key "cloths", "cloth_brands"
   add_foreign_key "cloths", "cloth_types"
   add_foreign_key "cloths", "users"
 end

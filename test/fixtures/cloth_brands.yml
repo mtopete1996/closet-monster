@@ -1,0 +1,11 @@
+cloth_brand_gap:
+  name: GAP
+  user: user_admin
+
+cloth_brand_levis:
+  name: Levi's
+  user: user_monster
+
+cloth_brand_725originals:
+  name: 725 Originals
+  user: user_monster
