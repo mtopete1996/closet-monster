@@ -20,7 +20,9 @@ module ApplicationHelper
     routes = Rails.application.routes.url_helpers
     return routes.root_path if current_user.blank? && module_name.blank? && mod.blank?
 
-    method = (mod || module_name) + '_' + page + '_path'
+    mod ||= module_name
+    method = page + '_path'
+    method.prepend(mod, '_') if mod.present?
     method.prepend(prefix, '_') if prefix.present?
 
     routes.send(method, **params)

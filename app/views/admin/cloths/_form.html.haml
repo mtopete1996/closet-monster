@@ -1,5 +1,7 @@
 - method = action_new? || action_create? ? :post : :put
 
+= render 'shared/flash_messages' if flash.present?
+
 = form_with model: [module_name, cloth], method: method, local: true do |f|
   = render '/shared/error_messages', resource: cloth
 
@@ -21,6 +23,10 @@
 
   .form-group
     = f.submit class: 'btn btn-success'
+
+  - if action_new? || action_create?
+    .form-group
+      = f.submit class: 'btn btn-primary', name: 'other', value: 'Create and add other'
 
 - if action_edit?
   = link_to 'Delete cloth', link_for(page: 'cloth', params: { id: cloth.id}), method: :delete,

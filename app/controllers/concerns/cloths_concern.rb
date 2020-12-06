@@ -18,7 +18,8 @@ module ClothsConcern
 
   def create
     @cloth_data = cloth_data(permited_params)
-    return save_successful(action: :saved) if cloth_data.cloth.save
+    another_path = success_link if params[:other]
+    return save_successful(action: :saved, path: another_path) if cloth_data.cloth.save
 
     render 'admin/cloths/new'
   end
@@ -55,12 +56,21 @@ module ClothsConcern
     params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id)
   end
 
-  def save_successful(action:)
+  def save_successful(action:, path: nil)
+    path ||= link_for(page: 'cloths', mod: module_name)
     flash[:success] = "Cloth has been #{action} successfully"
-    redirect_to index_path
+    redirect_to path
   end
 
   def index_path
-    link_for(page: 'cloths', mod: self.class.module_parent.name.downcase)
+    link_for(page: 'cloths', mod: module_name)
+  end
+
+  def success_link
+    link_for(prefix: 'new', page: 'cloth', mod: module_name)
+  end
+
+  def module_name
+    @module_name ||= self.class.module_parent.name.downcase
   end
 end
