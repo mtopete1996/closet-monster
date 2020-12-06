@@ -1,6 +1,6 @@
 - link = Rails.application.routes.url_helpers.send("edit_#{module_name}_cloth_path", cloth)
 
-= link_to link, class: 'link-black col-lg-3 card card-body bg-light text-center m-3' do
+= link_to link, class: 'cloth link-black col-lg-3 card card-body bg-light text-center m-3' do
   - if cloth.picture.attached?
     = image_tag url_for(cloth.picture.variant(resize_to_fill: [180, 180])), size: '180x180', class: 'd-block mx-auto mb-3'
   %h4= cloth.name

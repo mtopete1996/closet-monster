@@ -1,8 +1,7 @@
 %h1.my-4.text-center Cloths Section
 
-.d-flex.justify-content-end
-  = link_to link_for(prefix: 'new', page: 'cloth'), class: 'btn btn-success' do
-    = fa_icon(:plus, text: 'New cloth')
+= link_to link_for(prefix: 'new', page: 'cloth'), id: 'new-cloth',class: 'btn btn-success' do
+  = fa_icon(:plus, text: 'New cloth')
 
 = render 'shared/flash_messages' if flash.present?
 = render 'admin/cloths/cloths_section', cloths: @cloths

@@ -18,5 +18,5 @@
       - else
         - if controller_name != 'log_in'
           %li.nav-item.active
-            = link_to 'Log In', new_user_session_path, class: 'nav-link text-light'
+            = link_to 'Log In', new_user_session_path, id: 'login-btn', class: 'nav-link text-light'
             %span.sr-only (current)

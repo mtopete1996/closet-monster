@@ -2,13 +2,28 @@ cloth_white_shirt:
   name: The White Shirt
   enabled: true
   last_time_worn: null
+  user: user_admin
 
 cloth_black_pants:
   name: Black Pants
   enabled: true
   last_time_worn: 2010-10-10
+  user: user_admin
+
+cloth_brown_shirt:
+  name: Brown Shirt
+  enabled: true
+  last_time_worn: 2010-11-12
+  user: user_monster
+
+cloth_blue_pants:
+  name: Blue pants
+  enabled: true
+  last_time_worn: 2013-12-11
+  user: user_monster
 
 cloth_disabled_shirt:
   name: My Shirt
   enabled: false
   last_time_worn: 2009-09-09
+  user: user_admin

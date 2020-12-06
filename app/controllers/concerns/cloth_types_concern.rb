@@ -55,7 +55,7 @@ module ClothTypesConcern
   end
 
   def save_successful(action:)
-    flash[:success] = "Cloth has been #{action} successfully"
+    flash[:success] = "Cloth type has been #{action} successfully"
     redirect_to index_path
   end
 

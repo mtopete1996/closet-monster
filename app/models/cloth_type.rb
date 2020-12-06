@@ -10,7 +10,6 @@ class ClothType < ApplicationRecord
   validates :name, presence: true
 
   # Scopes
-  scope :globals, -> { where(user_id: nil) }
 
   # Delegates
 

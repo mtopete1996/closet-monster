@@ -1,5 +1,5 @@
 cloth_type_shirts:
-  name: T-Shirts
+  name: Shirts
   user: user_admin
 
 cloth_type_pants:
@@ -9,3 +9,9 @@ cloth_type_pants:
 cloth_type_polo:
   name: Polo
   user: user_monster
+
+cloth_type_socks:
+  name: Socks
+
+cloth_type_tshirts:
+  name: T-Shirts
