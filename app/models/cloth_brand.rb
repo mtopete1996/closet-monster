@@ -18,7 +18,7 @@ class ClothBrand < ApplicationRecord
   # Class methods
   class << self
     def user_brands(user)
-      where(user: user).or(where(user_id: nil))
+      where(user: user)
     end
   end
 

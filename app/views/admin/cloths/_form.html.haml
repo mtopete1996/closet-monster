@@ -22,6 +22,10 @@
     = f.select :cloth_type_id, types_options, { include_blank: true }, class: 'form-control'
 
   .form-group
+    = f.label 'Brand:'
+    = f.select :cloth_brand_id, brands_options, { include_blank: true }, class: 'form-control'
+
+  .form-group
     = f.submit class: 'btn btn-success'
 
   - if action_new? || action_create?

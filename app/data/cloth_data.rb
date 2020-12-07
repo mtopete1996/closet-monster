@@ -19,6 +19,10 @@ class ClothData
     @types_options ||= ClothType.user_types(user).pluck :name, :id
   end
 
+  def brands_options
+    @brands_options ||= ClothBrand.user_brands(user).pluck :name, :id
+  end
+
   private
 
   def new_or_edit

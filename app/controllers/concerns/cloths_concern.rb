@@ -53,7 +53,7 @@ module ClothsConcern
   end
 
   def permited_params
-    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id)
+    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id, :cloth_brand_id)
   end
 
   def save_successful(action:, path: nil)
