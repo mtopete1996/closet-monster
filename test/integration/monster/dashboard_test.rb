@@ -9,7 +9,7 @@ class Monster::DashboardTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Monster Dashboard'
     assert_select '#userDropdown', text: 'Manuel Topete'
-    assert_select '#options a', 2
+    assert_select '#options a', 3
   end
 
   private

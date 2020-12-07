@@ -5,13 +5,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'dashboards#show'
-    resources :cloths, except: :show
+    resources :cloth_brands, except: :show
     resources :cloth_types, except: :show
+    resources :cloths, except: :show
   end
 
   namespace :monster do
     root to: 'dashboards#show'
-    resources :cloths, except: :show
+    resources :cloth_brands, except: :show
     resources :cloth_types, except: :show
+    resources :cloths, except: :show
   end
 end

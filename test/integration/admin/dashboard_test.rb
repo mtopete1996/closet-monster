@@ -9,7 +9,7 @@ class Admin::DashboardTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Admin Dashboard'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
-    assert_select '#options a', 2
+    assert_select '#options a', 3
   end
 
   private

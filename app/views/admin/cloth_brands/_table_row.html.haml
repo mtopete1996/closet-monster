@@ -1,0 +1,10 @@
+- cloth_brands.each do |ct|
+  %tr
+    %td= ct.name
+    %td.d-flex.justify-content-around
+      = link_to link_for(prefix: 'edit', page: 'cloth_brand', params: { id: ct.id }), class: 'btn btn-info' do
+        = fa_icon :edit
+
+      = link_to link_for(page: 'cloth_brand', params: { id: ct.id }), method: :delete, class: 'btn btn-danger',
+                data: { confirm: 'Do you really wanna get rid of this brand?' }  do
+        = fa_icon :'skull-crossbones'
