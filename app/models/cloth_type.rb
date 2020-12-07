@@ -4,7 +4,7 @@ class ClothType < ApplicationRecord
   # Associations
   belongs_to :user, optional: true
 
-  has_many :cloths
+  has_many :cloths, dependent: :nullify
 
   # Validations
   validates :name, presence: true
