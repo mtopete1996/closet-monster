@@ -1,10 +1,5 @@
 %label.ml-5 Filters
 #filters.btn-group.mx-1{ role: :group, 'aria-label': 'filters-group' }
   - Cloth::VALID_FILTERS.each do |filter|
-    = link_to filter.to_s.titleize, link_for(page: 'cloths', params: { order_by: filter }), class: 'btn btn-secondary'
-
--# <div class="btn-group" role="group" aria-label="Basic example">
--#   <button type="button" class="btn btn-secondary">Left</button>
--#   <button type="button" class="btn btn-secondary">Middle</button>
--#   <button type="button" class="btn btn-secondary">Right</button>
--# </div>
+    = link_to filter.to_s.titleize, link_for(page: 'cloths', params: { order_by: filter }),
+                                    class: 'btn btn-secondary'
