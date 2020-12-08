@@ -2,10 +2,11 @@ class Cloth < ApplicationRecord
   # Configuration
   has_one_attached :picture
 
+  VALID_FILTERS = %i[brand name last_time_worn type].freeze
   # Associations
+  belongs_to :brand, class_name: 'ClothBrand', optional: true, foreign_key: :cloth_brand_id
+  belongs_to :type, class_name: 'ClothType', optional: true, foreign_key: :cloth_type_id
   belongs_to :user
-  belongs_to :cloth_type, optional: true
-  belongs_to :cloth_brand, optional: true
 
   # Validations
   validates :name, :enabled, presence: true
@@ -13,10 +14,16 @@ class Cloth < ApplicationRecord
 
   validate :last_worn_is_past
 
-  # Scopes
+  # Scopes
+  scope :by_brand, -> { left_outer_joins(:brand).order('LOWER(cloth_brands.name)') }
   scope :by_last_time_worn, -> { order(last_time_worn: :asc) }
+  scope :by_name, -> { order('LOWER(name)') }
+  scope :by_type, -> { left_outer_joins(:type).order('LOWER(cloth_types.name)') }
+  scope :with_data, -> { includes(:brand, :type) }
 
   # Delegates
+  delegate :name, to: :brand, prefix: true
+  delegate :name, to: :type, prefix: true
 
   # Instance methods
   def last_worn_is_past

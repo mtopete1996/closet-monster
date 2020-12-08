@@ -7,7 +7,10 @@ module ClothsConcern
   end
 
   def index
-    @cloths = current_user.cloths.by_last_time_worn.with_attached_picture
+    @cloths = current_user.cloths
+    @cloths = order!(params[:order_by])
+    @cloths.with_data.with_attached_picture
+
     render 'admin/cloths/index'
   end
 
@@ -46,10 +49,27 @@ module ClothsConcern
 
   private
 
-  attr_reader :cloth
+  attr_reader :cloth, :cloths
 
   def cloth_data(data = {})
     @cloth_data ||= ClothData.new(data.merge(user: current_user))
+  end
+
+  def index_path
+    link_for(page: 'cloths', mod: module_name)
+  end
+
+  def module_name
+    @module_name ||= self.class.module_parent.name.downcase
+  end
+
+  def order!(sentence)
+    return cloths.by_last_time_worn if sentence.blank? || sentence == 'last_time_worn'
+    return cloths.by_brand if sentence == 'brand'
+    return cloths.by_name if sentence == 'name'
+    return cloths.by_type if sentence == 'type'
+
+    raise NotImplementedError, 'Order type not found'
   end
 
   def permited_params
@@ -62,15 +82,7 @@ module ClothsConcern
     redirect_to path
   end
 
-  def index_path
-    link_for(page: 'cloths', mod: module_name)
-  end
-
   def success_link
     link_for(prefix: 'new', page: 'cloth', mod: module_name)
-  end
-
-  def module_name
-    @module_name ||= self.class.module_parent.name.downcase
   end
 end
