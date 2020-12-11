@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, :username, :email, :role, presence: true
   validates :role, inclusion: { in: roles.keys }
 
-  # Scopes
+  # Scopes
 
   # Delegates
 

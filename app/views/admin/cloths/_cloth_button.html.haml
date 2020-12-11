@@ -1,19 +1,24 @@
-- link = Rails.application.routes.url_helpers.send("edit_#{module_name}_cloth_path", cloth)
-
 .cloth.col-lg-3.p-2
-  = link_to link, class: 'card card-body bg-light text-center link-black' do
-    - if cloth.picture.attached?
-      = image_tag url_for(cloth.picture.variant(resize_to_fill: [180, 180])), size: '180x180', class: 'd-block mx-auto mb-3'
-    %h4= cloth.name
-    - if cloth.last_time_worn.present?
-      .last-time-worn
-        %strong Last time worn
-        = format_datetime(cloth.last_time_worn, format: :dby)
-    - if cloth.brand.present?
-      .brand
-        %strong Brand
-        = cloth.brand_name
-    - if cloth.type.present?
-      .type
-        %strong Type
-        = cloth.type_name
+  .card.card-body.bg-light.text-center.testing-height.d-flex.flex-column.justify-content-around
+    = link_to link_for(prefix: 'edit', page: 'cloth', params: { id: cloth.id }),
+              class: 'link-black' do
+      - if cloth.picture.attached?
+        = image_tag url_for(cloth.picture.variant(resize_to_fill: [180, 180])), size: '180x180',
+                    class: 'd-block mx-auto mb-3'
+      %h4= cloth.name
+      - if cloth.last_time_worn.present?
+        .last-time-worn
+          %strong Last time worn
+          = format_datetime(cloth.last_time_worn, format: :dby)
+      - if cloth.brand.present?
+        .brand
+          %strong Brand
+          = cloth.brand_name
+      - if cloth.type.present?
+        .type
+          %strong Type
+          = cloth.type_name
+
+    = link_to 'Using now!',
+              link_for(page: 'cloth', params: { id: cloth.id, cloth: { last_time_worn: Date.today } }),
+              method: 'PUT', class: 'btn btn-success my-3'

@@ -9,7 +9,7 @@ class Monster::ClothsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Cloths Section'
     assert_select '#userDropdown', text: 'Manuel Topete'
-    assert_select '#cloths-container a', 2
+    assert_select '#cloths-container a', 4
   end
 
   test 'NEW cloths' do
@@ -40,7 +40,8 @@ class Monster::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'UPDATE cloth' do
-    put monster_cloth_path(cloths(:cloth_white_shirt)), params: { cloth: {name: :testing, last_time_worn: 3.days.before } }
+    put monster_cloth_path(cloths(:cloth_white_shirt)),
+        params: { cloth: { name: :testing, last_time_worn: 3.days.before } }
 
     assert_response :redirect
     assert flash[:success].present?, 'A flash success should exist'
