@@ -2,19 +2,20 @@
 
 = render 'shared/flash_messages' if flash.present?
 
-= form_with model: [module_name, cloth], method: method, local: true do |f|
+= form_with model: [module_name, cloth], method: method, local: true, id: 'cloths-form' do |f|
   = render '/shared/error_messages', resource: cloth
 
   .form-group
-    = f.label 'Name: '
-    = f.text_field :name, class: 'form-control'
+    = f.label 'Name:'
+    = f.text_field :name, class: 'form-control', placeholder: 'Optional'
+    %small Note: If you leave the name empty the name will be based on the type and brand of cloth
 
   .form-group
-    = f.label 'Last Time Worn: '
+    = f.label 'Last Time Worn:'
     = f.date_field :last_time_worn, class: 'form-control'
 
   .form-group
-    = f.label 'Picture: '
+    = f.label 'Picture:'
     = f.file_field :picture, accept: 'image/png,image/jpg,image/jpeg', class: 'form-control'
 
   .form-group
