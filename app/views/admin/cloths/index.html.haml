@@ -1,10 +1,11 @@
 %h1.my-4.text-center Cloths Section
 
-.display-inline
-  = link_to link_for(prefix: 'new', page: 'cloth'), id: 'new-cloth',class: 'btn btn-success' do
-    = fa_icon(:plus, text: 'New cloth')
-
-  = render 'admin/cloths/filter_buttons', cloths: @cloths
+.row
+  .col-12.col-lg-2
+    = link_to link_for(prefix: 'new', page: 'cloth'), id: 'new-cloth',class: 'btn btn-success' do
+      = fa_icon(:plus, text: 'New cloth')
+  .col-12.col-lg-10
+    = render 'admin/cloths/filter_buttons', cloths: @cloths
 
 = render 'shared/flash_messages' if flash.present?
 = render 'admin/cloths/cloths_section', cloths: @cloths
