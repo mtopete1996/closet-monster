@@ -17,7 +17,6 @@ class Cloth < ApplicationRecord
   # Scopes
   scope :by_brand, -> { left_outer_joins(:brand).order('LOWER(cloth_brands.name)') }
   scope :by_last_time_worn, -> { order(last_time_worn: :asc) }
-  scope :by_name, -> { order('LOWER(name)') }
   scope :by_type, -> { left_outer_joins(:type).order('LOWER(cloth_types.name)') }
   scope :with_data, -> { includes(:brand, :type) }
 

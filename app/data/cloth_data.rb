@@ -16,11 +16,11 @@ class ClothData
   end
 
   def types_options
-    @types_options ||= ClothType.user_types(user).pluck :name, :id
+    @types_options ||= ClothType.user_types(user).alphabetically.pluck :name, :id
   end
 
   def brands_options
-    @brands_options ||= ClothBrand.user_brands(user).pluck :name, :id
+    @brands_options ||= ClothBrand.user_brands(user).alphabetically.pluck :name, :id
   end
 
   private

@@ -7,7 +7,7 @@ module ClothTypesConcern
   end
 
   def index
-    @cloth_types = current_user.cloth_types
+    @cloth_types = current_user.cloth_types.alphabetically
     render 'admin/cloth_types/index'
   end
 

@@ -66,7 +66,7 @@ module ClothsConcern
   def order!(sentence)
     return cloths.by_last_time_worn if sentence.blank? || sentence == 'last_time_worn'
     return cloths.by_brand if sentence == 'brand'
-    return cloths.by_name if sentence == 'name'
+    return cloths.alphabetically if sentence == 'name'
     return cloths.by_type if sentence == 'type'
 
     raise NotImplementedError, 'Order type not found'
