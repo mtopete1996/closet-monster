@@ -18,9 +18,10 @@ module ClothBrandsConcern
 
   def create
     @cloth_brand = ClothBrand.new(permited_params)
-    return save_successful(action: :saved) if cloth_brand.save
-
-    render 'admin/cloth_brands/new'
+    respond_to do |format|
+      format.html { html_resp }
+      format.js { js_resp }
+    end
   end
 
   def edit
@@ -45,6 +46,16 @@ module ClothBrandsConcern
   private
 
   attr_reader :cloth_brand
+
+  def html_resp
+    return save_successful(action: :saved) if cloth_brand.save
+
+    render 'admin/cloth_brands/new'
+  end
+
+  def js_resp
+    render 'admin/cloth_brands/new' if cloth_brand.save
+  end
 
   def find_cloth_brand
     @find_cloth_brand ||= ClothBrand.find_by(id: params[:id])

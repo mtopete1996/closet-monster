@@ -23,8 +23,13 @@
     = f.select :cloth_type_id, types_options, { include_blank: true }, class: 'form-control'
 
   .form-group
-    = f.label 'Brand:'
-    = f.select :cloth_brand_id, brands_options, { include_blank: true }, class: 'form-control'
+    .row
+      .col-7
+        = f.label 'Brand:'
+        = f.select :cloth_brand_id, brands_options, { include_blank: true }, class: 'form-control'
+      .col-5.d-flex.align-items-end
+        %button.btn.btn-info{ data: { target: '#new-cloth-brand', toggle: 'modal' }, type: :button }
+          Create brand
 
   .form-group
     = f.submit class: 'btn btn-success'

@@ -1,0 +1,6 @@
+$('#new-cloth-brand').modal('hide')
+
+const modal = "<%= escape_javascript(render('admin/cloth_brands/modal')) %>"
+const opt = $('<option value="<%= @cloth_brand.id %>"><%= @cloth_brand.name %></option>')
+$('#cloth_cloth_brand_id').append(opt)
+$('#cloth_cloth_brand_id').val('<%= @cloth_brand.id %>')
