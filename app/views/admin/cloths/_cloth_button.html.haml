@@ -4,7 +4,7 @@
               class: 'link-black' do
       - if cloth.picture.attached?
         = image_tag url_for(cloth.picture.variant(resize_to_fill: [180, 180])), size: '180x180',
-                    class: 'd-block mx-auto mb-3'
+                    class: 'd-block mx-auto mb-3', alt: 'picture not found'
       %h4= cloth.name
       - if cloth.last_time_worn.present?
         .last-time-worn
