@@ -32,8 +32,16 @@ class Cloth < ApplicationRecord
   end
 
   # Class methods
-  # class << self
-  # end
+  class << self
+    def order_by(sentence)
+      return by_last_time_worn if sentence.blank? || sentence == 'last_time_worn'
+      return by_brand if sentence == 'brand'
+      return alphabetically if sentence == 'name'
+      return by_type if sentence == 'type'
+
+      raise NotImplementedError, 'Order type not found'
+    end
+  end
 
   # Private methods
   # private

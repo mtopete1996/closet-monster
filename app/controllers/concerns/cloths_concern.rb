@@ -7,10 +7,9 @@ module ClothsConcern
   end
 
   def index
-    @cloths = current_user.cloths
-    @cloths = order!(params[:order_by])
-    @cloths.with_data.with_attached_picture
-
+    @cloths = cloths
+    @total_pages = cloths.total_pages
+    @parameters = cloths_params
     render 'admin/cloths/index'
   end
 
@@ -20,7 +19,7 @@ module ClothsConcern
   end
 
   def create
-    @cloth_data = cloth_data(permited_params)
+    @cloth_data = cloth_data(cloth_params)
     another_path = success_link if params[:other]
     return save_successful(action: :saved, path: another_path) if cloth_data.cloth.save
 
@@ -34,7 +33,7 @@ module ClothsConcern
 
   def update
     @cloth_data = cloth_data(id: params[:id])
-    return save_successful(action: :updated) if cloth_data.cloth.update(permited_params)
+    return save_successful(action: :updated) if cloth_data.cloth.update(cloth_params)
 
     render 'admin/cloths/edit'
   end
@@ -49,10 +48,23 @@ module ClothsConcern
 
   private
 
-  attr_reader :cloth, :cloths
+  attr_reader :cloth
 
   def cloth_data(data = {})
     @cloth_data ||= ClothData.new(data.merge(user: current_user))
+  end
+
+  def cloth_params
+    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id, :cloth_brand_id)
+  end
+
+  def cloths
+    @cloths ||= current_user.cloths.page(page).per(per).order_by(cloths_params[:order_by]).with_data
+                            .with_attached_picture
+  end
+
+  def cloths_params
+    params.permit(:page, :order_by)
   end
 
   def index_path
@@ -63,17 +75,12 @@ module ClothsConcern
     @module_name ||= self.class.module_parent.name.downcase
   end
 
-  def order!(sentence)
-    return cloths.by_last_time_worn if sentence.blank? || sentence == 'last_time_worn'
-    return cloths.by_brand if sentence == 'brand'
-    return cloths.alphabetically if sentence == 'name'
-    return cloths.by_type if sentence == 'type'
-
-    raise NotImplementedError, 'Order type not found'
+  def page
+    @page ||= params[:page] || 1
   end
 
-  def permited_params
-    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id, :cloth_brand_id)
+  def per
+    @per ||= params[:per] || 12
   end
 
   def save_successful(action:, path: nil)

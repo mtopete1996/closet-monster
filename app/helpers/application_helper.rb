@@ -28,6 +28,17 @@ module ApplicationHelper
     return name if name != 'object'
   end
 
+  def page_buttons(route, parameters, total, current)
+    current ||= 1
+    (1..total).map do |pag|
+      complete_route = *route
+      parameters[:page] = pag
+      complete_route << parameters.to_h
+      active = pag == current.to_i ? :active : nil
+      link_to pag, complete_route, class: "btn btn-secondary #{active}"
+    end
+  end
+
   private
 
   def build_path(prefix, mod, page)
