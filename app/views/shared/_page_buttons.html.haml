@@ -1,0 +1,3 @@
+#pages.btn-group.my-3{ role: :group, 'aria-label': 'pages-group' }
+  - page_buttons(route, parameters, total_pages, params[:page]).each do |link|
+    = link

@@ -1,5 +1,6 @@
 .h5.ml-5.d-none.d-lg-inline Filters
 #filters.btn-group.mx-lg-3.my-2.my-lg-0{ role: :group, 'aria-label': 'filters-group' }
   - Cloth::VALID_FILTERS.each do |filter|
-    = link_to filter.to_s.titleize, link_for(page: 'cloths', params: { order_by: filter }),
-                                    class: 'btn btn-secondary'
+    - active = filter.to_s == parameters[:order_by] ? :active : nil
+    = link_to filter.to_s.titleize, link_for(page: 'cloths', params: parameters.merge(order_by: filter)),
+                                    class: "btn btn-secondary #{active}"
