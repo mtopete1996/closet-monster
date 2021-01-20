@@ -30,6 +30,14 @@ class Monster::ClothsTest < ActionDispatch::IntegrationTest
     assert Cloth.where(name: :my_tshirt)
   end
 
+  test 'CREATE cloth with wrong params' do
+    post monster_cloths_path, params: { cloth: { last_time_worn: 2.days.from_now } }
+    assert_response :success
+
+    assert_select '.alert li', text: "Name can't be blank"
+    assert_select '.alert li', text: 'Last time worn can not be in the future'
+  end
+
   test 'EDIT cloth' do
     get edit_monster_cloth_path(cloths(:cloth_white_shirt))
     assert_response :success

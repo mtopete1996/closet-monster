@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
   enum role: %i[monster admin]
 
+  # CallBacks
+  before_validation :assign_role
+
   # Associations
   has_many :cloths
   has_many :cloth_types
@@ -24,5 +27,9 @@ class User < ApplicationRecord
   # end
 
   # Private methods
-  # private
+  private
+
+  def assign_role
+    self.role = :monster if role.blank?
+  end
 end

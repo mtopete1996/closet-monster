@@ -2,15 +2,14 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test 'CREATE user w valid data' do
-    data = { name: :mr_test, username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123,
-             role: :admin }
+    data = { name: :mr_test, username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123 }
     user = User.create data
 
     assert_not_nil user
     assert user.valid?, 'User should be valid'
-    assert 'mr test', user.name
-    assert 'test_mr', user.username
-    assert 'mr_test@testing.com', user.email
+    assert_equal 'mr_test', user.name
+    assert_equal 'test_mr', user.username
+    assert_equal 'mr_test@testing.com', user.email
   end
 
   test 'CREATE user w nil name' do
