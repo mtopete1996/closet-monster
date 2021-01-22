@@ -59,6 +59,7 @@ module ClothBrandsConcern
   end
 
   def js_resp
+    flash[:success] = 'Cloth brand saved successfully'
     render 'admin/cloth_brands/new' if cloth_brand.save
   end
 

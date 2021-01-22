@@ -32,6 +32,14 @@ class Monster::ClothBrandsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: 'Cloth Brands Section'
   end
 
+  test 'CREATE cloth brand with ajax' do
+    post monster_cloth_brands_path, params: { cloth_brand: { name: :test_brand_xhr } }, xhr: true
+    assert_response :success
+
+    assert flash[:success].present?, 'A flash success should exist'
+    assert_equal 'test_brand_xhr', ClothBrand.recent.take.name
+  end
+
   test 'EDIT cloth brand' do
     get edit_monster_cloth_brand_path(cloth_brands(:cloth_brand_levis))
     assert_response :success
