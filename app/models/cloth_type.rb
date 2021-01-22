@@ -18,7 +18,7 @@ class ClothType < ApplicationRecord
   # Class methods
   class << self
     def user_types(user)
-      where(user: user).or(where(user_id: nil))
+      where(user: user).or(globals)
     end
   end
 
