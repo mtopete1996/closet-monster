@@ -1,0 +1,10 @@
+%table#cloths-table.table.table-striped.table-responsive-md.my-1
+  %thead
+    %th Name
+    %th Last Time Worn
+    %th Brand
+    %th Type
+    - if current_user.admin?
+      %th User
+  %tbody
+    = render partial: 'admin/cloths/table/row', collection: cloths, as: :cloth

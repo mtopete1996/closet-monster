@@ -1,0 +1,7 @@
+%tr.cloth-row
+  %td= link_to cloth.name, [:edit, :admin, :cloth, {id: cloth.id}]
+  %td= format_datetime(cloth.last_time_worn, format: :dby) if cloth.last_time_worn.present?
+  %td= cloth.brand.name if cloth.brand.present?
+  %td= cloth.type.name if cloth.type.present?
+  - if current_user.admin?
+    %td= cloth.user_username

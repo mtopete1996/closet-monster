@@ -9,6 +9,7 @@ require('@rails/activestorage').start()
 require('channels')
 require('jquery')
 require('packs/dynamic_name')
+require('packs/per_param')
 
 import('bootstrap')
 import $ from 'jquery'
