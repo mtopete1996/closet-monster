@@ -10,6 +10,7 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: 'Cloths Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
     assert_select '#cloths-container .cloth', 6
+    assert_select '#cloths-table tr', count: 0
   end
 
   test 'INDEX cloths with per param' do
@@ -19,6 +20,16 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: 'Cloths Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
     assert_select '#cloths-container .cloth', 2
+  end
+
+  test 'INDEX table view' do
+    get admin_cloths_path(params: { view: :table })
+    assert_response :success
+
+    assert_select 'h1', text: 'Cloths Section'
+    assert_select '#userDropdown', text: 'Porfirio Bayardo'
+    assert_select '#cloths-table tr', 6
+    assert_select '#cloths-container', count: 0
   end
 
   test 'NEW cloths' do

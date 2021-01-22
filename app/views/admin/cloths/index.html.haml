@@ -1,12 +1,14 @@
 %h1.my-4.text-center Cloths Section
-.row
-  .col-12.col-lg-2
-    = link_to [:new, module_name, :cloth], id: 'new-cloth',class: 'btn btn-success' do
-      = fa_icon(:plus, text: 'New cloth')
-  .col-12.col-lg-10
-    = render 'admin/cloths/filter_buttons', cloths: @cloths, parameters: @parameters
+.d-md-flex.justify-content-between
+  = link_to [:new, module_name, :cloth], id: 'new-cloth',class: 'btn btn-success' do
+    = fa_icon(:plus, text: 'New cloth')
+  = render 'admin/cloths/filter_buttons', cloths: @cloths, parameters: @parameters
+  = render 'admin/cloths/view_buttons', parameters: @parameters
 
+= render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloths],
+                                parameters: @parameters
 = render 'shared/flash_messages' if flash.present?
-= render 'admin/cloths/cloths_section', cloths: @cloths
+= render 'admin/cloths/gallery/gallery', cloths: @cloths if @parameters[:view].blank? || @parameters[:view] == 'gallery'
+= render 'admin/cloths/table/table', cloths: @cloths if @parameters[:view] == 'table'
 = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloths],
                                 parameters: @parameters

@@ -1,3 +1,9 @@
-#pages.btn-group.my-3{ role: :group, 'aria-label': 'pages-group' }
-  - page_buttons(route, parameters, total_pages, params[:page]).each do |link|
-    = link
+- per_options = [5, 12, 20, 35, 50, 100]
+
+#pages.d-flex.justify-content-between.align-items-center.my-2
+  #pages-group.btn-group.my-3{ role: :group, 'aria-label': 'pages-group' }
+    - page_buttons(route, parameters, total_pages, params[:page]).each do |link|
+      = link
+
+  .pages-per
+    = select_tag :per_param, options_for_select(per_options), include_blank: true, id: 'per_param', class: 'form-control'

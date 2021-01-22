@@ -1,0 +1,6 @@
+#views-button.btn-group.mx-lg-3.my-2.my-lg-0{ role: :group, 'aria-label': 'filters-group' }
+  = link_to [module_name, :cloths, { view: :table }], class: "btn btn-secondary #{'active' if parameters[:view] == 'table'}" do
+    = fa_icon(:table)
+
+  = link_to [module_name, :cloths, { view: :gallery }], class: "btn btn-secondary #{'active' if parameters[:view].blank? || parameters[:view] == 'gallery'}" do
+    = fa_icon('th-large')

@@ -62,6 +62,19 @@ module ClothsConcern
   end
 
   def cloths_params
-    params.permit(:order_by, :page, :per)
+    params.permit(:order_by, :page, :per, :view)
+  end
+
+  def per
+    @per ||= begin
+      return params[:per] if params[:per].present? || view.blank?
+      return 20 if view == 'table'
+
+      12
+    end
+  end
+
+  def view
+    @view ||= params[:view] || :gallery
   end
 end
