@@ -7,13 +7,13 @@
   = render '/shared/error_messages', resource: cloth_brand
 
   .form-group
-    = f.label 'Name: '
+    = f.label 'Name:'
     = f.text_field :name, class: 'form-control'
 
   .form-group
     = f.submit class: 'btn btn-success'
 
 - if action_edit?
-  = link_to 'Delete Brand', link_for(page: 'cloth_brand', params: { id: cloth_brand.id}),
-                           method: :delete, id: 'delete-brand-btn', class: 'btn btn-danger',
-                           data: { confirm: 'Do you really wanna get rid of this brand?' }
+  = link_to 'Delete Brand', [module_name, :cloth_brand, { id: cloth_brand.id}],
+                            method: :delete, id: 'delete-brand-btn', class: 'btn btn-danger',
+                            data: { confirm: 'Do you really wanna get rid of this brand?' }

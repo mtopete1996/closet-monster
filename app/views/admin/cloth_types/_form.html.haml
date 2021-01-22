@@ -11,6 +11,6 @@
     = f.submit class: 'btn btn-success'
 
 - if action_edit?
-  = link_to 'Delete Type', link_for(page: 'cloth_type', params: { id: cloth_type.id}),
+  = link_to 'Delete Type', [module_name, :cloth_type, { id: cloth_type.id}],
                            method: :delete, id: 'delete-type-btn', class: 'btn btn-danger',
                            data: { confirm: 'Do you really wanna get rid of this type?' }

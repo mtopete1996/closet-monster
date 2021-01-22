@@ -39,6 +39,6 @@
       = f.submit id: 'create-other-btn', class: 'btn btn-primary', name: 'other', value: 'Create and add other'
 
 - if action_edit?
-  = link_to 'Delete cloth', link_for(page: 'cloth', params: { id: cloth.id}), method: :delete,
+  = link_to 'Delete cloth', [module_name, :cloth, { id: cloth.id}], method: :delete,
                             id: 'delete-cloth-btn', class: 'btn btn-danger',
                             data: { confirm: 'Do you really wanna get rid of this cloth?' }

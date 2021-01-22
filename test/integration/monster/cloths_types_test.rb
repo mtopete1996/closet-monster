@@ -27,6 +27,9 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth type has been saved successfully', flash[:success]
     assert ClothType.where(name: :test_type)
+
+    follow_redirect!
+    assert_select 'h1', text: 'Types of Cloth Section'
   end
 
   test 'EDIT cloth type' do
@@ -45,6 +48,9 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth type has been updated successfully', flash[:success]
     assert ClothType.where(name: 'testing').exists?
+
+    follow_redirect!
+    assert_select 'h1', text: 'Types of Cloth Section'
   end
 
   test 'DESTROY cloth type' do
@@ -54,6 +60,9 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth type has been deleted successfully', flash[:success]
     assert !ClothType.where(name: 'testing').exists?
+
+    follow_redirect!
+    assert_select 'h1', text: 'Types of Cloth Section'
   end
 
   private

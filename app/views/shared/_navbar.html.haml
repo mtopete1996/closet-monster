@@ -1,4 +1,4 @@
-- title_link = current_user.present? ? link_for(page: 'root') : '#'
+- title_link = current_user.present? ? root_path : '#'
 %nav.navbar.navbar-expand-lg.bg-light-brown.mb-3
   %navbar-brand
     = link_to 'Closet Monster', title_link, class: 'h5 text-light mt-1'
@@ -13,7 +13,7 @@
                                                     data: { toggle: :dropdown }, role: :button }
             = current_user.name
           .dropdown-menu.bg-light-brown{'aria-labelledby' => :userDropdown}
-            = link_to 'Dashboard', link_for(page: 'root', mod: current_user.role), class: 'dropdown-item text-light'
+            = link_to 'Dashboard', [module_name, :root], class: 'dropdown-item text-light'
             = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item text-light'
       - else
         - if controller_name != 'log_in'

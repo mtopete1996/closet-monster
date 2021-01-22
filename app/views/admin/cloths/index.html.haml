@@ -1,7 +1,7 @@
 %h1.my-4.text-center Cloths Section
 .row
   .col-12.col-lg-2
-    = link_to link_for(prefix: 'new', page: 'cloth'), id: 'new-cloth',class: 'btn btn-success' do
+    = link_to [:new, module_name, :cloth], id: 'new-cloth',class: 'btn btn-success' do
       = fa_icon(:plus, text: 'New cloth')
   .col-12.col-lg-10
     = render 'admin/cloths/filter_buttons', cloths: @cloths, parameters: @parameters

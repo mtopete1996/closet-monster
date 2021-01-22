@@ -16,16 +16,11 @@ module ApplicationHelper
     timestamp.strftime(t("utils.date.#{format}"))
   end
 
-  def link_for(prefix: '', page:, params: {}, mod: nil)
-    routes = Rails.application.routes.url_helpers
-    return routes.root_path if current_user.blank? && module_name.blank? && mod.blank?
-
-    routes.send(build_path(prefix, mod, page), **params)
-  end
-
   def module_name
-    name = controller.class.module_parent.name.downcase
-    return name if name != 'object'
+    @module_name ||= begin
+      name = controller.class.module_parent.name.downcase
+      name if name != 'object'
+    end
   end
 
   def page_buttons(route, parameters, total, current)
@@ -37,15 +32,5 @@ module ApplicationHelper
       active = pag == current.to_i ? :active : nil
       link_to pag, complete_route, class: "btn btn-secondary #{active}"
     end
-  end
-
-  private
-
-  def build_path(prefix, mod, page)
-    mod ||= module_name
-    route_name = page + '_path'
-    route_name.prepend(mod, '_') if mod.present?
-    route_name.prepend(prefix, '_') if prefix.present?
-    route_name
   end
 end

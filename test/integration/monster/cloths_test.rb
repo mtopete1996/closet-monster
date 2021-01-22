@@ -30,6 +30,18 @@ class Monster::ClothsTest < ActionDispatch::IntegrationTest
     assert Cloth.where(name: :my_tshirt)
   end
 
+  test 'CREATE cloth and create another one' do
+    post monster_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday },  other: 'Create and add other' }
+    assert_response :redirect
+
+    assert_equal 'Cloth has been saved successfully', flash[:success]
+    assert Cloth.where(name: :my_tshirt)
+
+    follow_redirect!
+
+    assert_select 'h1', text: 'Create new cloth'
+  end
+
   test 'CREATE cloth with wrong params' do
     post monster_cloths_path, params: { cloth: { last_time_worn: 2.days.from_now } }
     assert_response :success

@@ -5,7 +5,7 @@
     %h1.mb-4 #{module_name.titleize} Dashboard
 
   #options.row.my-3
-    = render 'admin/dashboards/section', name: 'Clothes', icon_name: :tshirt, path: link_for(page: 'cloths')
+    = render 'admin/dashboards/section', name: 'Clothes', icon_name: :tshirt, path: [module_name, :cloths]
     = render 'admin/dashboards/section', name: 'Types of cloth', icon_name: :socks,
-                                         path: link_for(page: 'cloth_types')
-    = render 'admin/dashboards/section', name: 'Brands', icon_name: :tags, path: link_for(page: 'cloth_brands')
+                                         path: [module_name, :cloth_types]
+    = render 'admin/dashboards/section', name: 'Brands', icon_name: :tags, path: [module_name, :cloth_brands]

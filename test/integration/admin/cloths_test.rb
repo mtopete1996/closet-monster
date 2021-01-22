@@ -9,7 +9,16 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Cloths Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
-    assert_select '#cloths-container a', 6
+    assert_select '#cloths-container .cloth', 3
+  end
+
+  test 'INDEX cloths with per param' do
+    get admin_cloths_path(params: { per: 2 })
+    assert_response :success
+
+    assert_select 'h1', text: 'Cloths Section'
+    assert_select '#userDropdown', text: 'Porfirio Bayardo'
+    assert_select '#cloths-container .cloth', 2
   end
 
   test 'NEW cloths' do
@@ -28,6 +37,20 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth has been saved successfully', flash[:success]
     assert Cloth.where(name: :my_tshirt)
+
+    follow_redirect!
+    assert_select 'h1', text: 'Cloths Section'
+  end
+
+  test 'CREATE cloth and create another one' do
+    post admin_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday },  other: 'Create and add other' }
+    assert_response :redirect
+
+    assert_equal 'Cloth has been saved successfully', flash[:success]
+    assert Cloth.where(name: :my_tshirt)
+
+    follow_redirect!
+    assert_select 'h1', text: 'Create new cloth'
   end
 
   test 'EDIT cloth' do
@@ -47,6 +70,9 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth has been updated successfully', flash[:success]
     assert Cloth.where(name: 'testing').exists?
+
+    follow_redirect!
+    assert_select 'h1', text: 'Cloths Section'
   end
 
   test 'DESTROY cloth' do
@@ -56,6 +82,9 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     assert flash[:success].present?, 'A flash success should exist'
     assert_equal 'Cloth has been deleted successfully', flash[:success]
     assert !Cloth.where(name: 'testing').exists?
+
+    follow_redirect!
+    assert_select 'h1', text: 'Cloths Section'
   end
 
   private

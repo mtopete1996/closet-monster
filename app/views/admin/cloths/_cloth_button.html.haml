@@ -1,7 +1,6 @@
 .cloth.col-lg-3.p-2
   .card.card-body.bg-light.text-center.testing-height.d-flex.flex-column.justify-content-around
-    = link_to link_for(prefix: 'edit', page: 'cloth', params: { id: cloth.id }),
-              class: 'link-black' do
+    = link_to [:edit, module_name, :cloth, { id: cloth.id }], class: 'link-black' do
       - if cloth.picture.attached?
         = image_tag url_for(cloth.picture.variant(resize_to_fill: [180, 180])), size: '180x180',
                     class: 'd-block mx-auto mb-3', alt: 'picture not found'
@@ -19,6 +18,5 @@
           %strong Type
           = cloth.type_name
 
-    = link_to 'Using now!',
-              link_for(page: 'cloth', params: { id: cloth.id, cloth: { last_time_worn: Date.today } }),
+    = link_to 'Using now!', [module_name, :cloth, { id: cloth.id, cloth: { last_time_worn: Date.today } }],
               method: 'PUT', class: 'btn btn-success my-3'

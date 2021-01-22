@@ -2,5 +2,5 @@
 #filters.btn-group.mx-lg-3.my-2.my-lg-0{ role: :group, 'aria-label': 'filters-group' }
   - Cloth::VALID_FILTERS.each do |filter|
     - active = filter.to_s == parameters[:order_by] ? :active : nil
-    = link_to filter.to_s.titleize, link_for(page: 'cloths', params: parameters.merge(order_by: filter)),
+    = link_to filter.to_s.titleize, [module_name, :cloths, parameters.merge(order_by: filter).to_h],
                                     class: "btn btn-secondary #{active}"

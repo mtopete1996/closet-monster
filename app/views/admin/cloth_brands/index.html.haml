@@ -1,7 +1,7 @@
 %h1.my-4.text-center Cloth Brands Section
 
 .d-flex.justify-content-end.mb-4
-  = link_to link_for(prefix: 'new', page: 'cloth_brand'), class: 'btn btn-success' do
+  = link_to [:new, module_name, :cloth_brand], class: 'btn btn-success' do
     = fa_icon(:plus, text: 'New brand')
 
 = render 'shared/flash_messages' if flash.present?
