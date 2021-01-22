@@ -64,7 +64,7 @@ module ClothsConcern
   end
 
   def cloths_params
-    params.permit(:page, :order_by)
+    params.permit(:order_by, :page, :per)
   end
 
   def index_path
