@@ -7,6 +7,10 @@
 = render 'shared/flash_messages' if flash.present?
 
 - if @cloth_types.present?
+  = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloth_types],
+                                  parameters: @parameters
   = render 'admin/cloth_types/table', cloth_types: @cloth_types
+  = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloth_types],
+                                  parameters: @parameters
 - else
   .alert.alert-info Looks like you haven't created any type of cloth

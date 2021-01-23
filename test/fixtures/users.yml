@@ -9,3 +9,9 @@ user_monster:
   username: mtopete
   role: monster
   email: manuel@testing.com
+
+user_monster_extra:
+  name: Testing test
+  username: test
+  role: monster
+  email: test@testing.com

@@ -1,6 +1,8 @@
 %table#brands-table.table.table-hover
   %thead
     %th Name
+    - if module_admin?
+      %th User
     %th.text-center Options
   %tbody
     = render 'admin/cloth_brands/table_row', cloth_brands: cloth_brands

@@ -1,5 +1,5 @@
 module Monster
-  class ClothBrandsController < ApplicationController
+  class ClothBrandsController < MonsterController
     include ClothBrandsConcern
   end
 end

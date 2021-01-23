@@ -8,5 +8,5 @@
 
 = render 'shared/flash_messages' if flash.present?
 = render 'admin/cloths/cloths_section', cloths: @cloths
-= render 'shared/page_buttons', total_pages: @total_pages, route: [current_user.role, :cloths],
+= render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloths],
                                 parameters: @parameters

@@ -8,17 +8,21 @@ class ApplicationController < ActionController::Base
     admin_root_path
   end
 
-  def authorized_user
-    redirect_to monster_root_path unless current_user.admin?
-  end
-
   def user_logged
-    redirect_to root_path if current_user.blank?
+    redirect_to root_path if no_user && admin_or_monster?
   end
 
   protected
 
+  def admin_or_monster?
+    %w[admin monster].include?(self.class.module_parent.name.downcase)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username email password password_confirmation])
+  end
+
+  def no_user
+    @no_user ||= current_user.blank?
   end
 end

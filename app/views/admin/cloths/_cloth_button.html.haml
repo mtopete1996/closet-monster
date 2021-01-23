@@ -9,14 +9,21 @@
         .last-time-worn
           %strong Last time worn
           = format_datetime(cloth.last_time_worn, format: :dby)
+
       - if cloth.brand.present?
         .brand
           %strong Brand
           = cloth.brand_name
+
       - if cloth.type.present?
         .type
           %strong Type
           = cloth.type_name
+
+      - if module_admin?
+        .type
+          %strong User
+          = cloth.user_username
 
     = link_to 'Using now!', [module_name, :cloth, { id: cloth.id, cloth: { last_time_worn: Date.today } }],
               method: 'PUT', class: 'btn btn-success my-3'

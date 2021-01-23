@@ -1,11 +1,13 @@
-- cloth_brands.each do |ct|
+- cloth_brands.each do |brand|
   %tr
-    %td= ct.name
+    %td= brand.name
+    - if module_admin?
+      %td= brand.user_username if brand.user.present?
     %td.d-flex.justify-content-around
 
-      = link_to [:edit, module_name, :cloth_brand, { id: ct.id }], class: 'btn btn-info' do
+      = link_to [:edit, module_name, :cloth_brand, { id: brand.id }], class: 'btn btn-info' do
         = fa_icon :edit
 
-      = link_to [module_name, :cloth_brand, { id: ct.id }], method: :delete, class: 'btn btn-danger',
+      = link_to [module_name, :cloth_brand, { id: brand.id }], method: :delete, class: 'btn btn-danger',
                 data: { confirm: 'Do you really wanna get rid of this brand?' }  do
         = fa_icon :'skull-crossbones'

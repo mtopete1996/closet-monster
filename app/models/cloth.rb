@@ -19,10 +19,12 @@ class Cloth < ApplicationRecord
   scope :by_last_time_worn, -> { order(last_time_worn: :asc) }
   scope :by_type, -> { left_outer_joins(:type).order('LOWER(cloth_types.name)') }
   scope :with_data, -> { includes(:brand, :type) }
+  scope :with_user, -> { includes(:user) }
 
   # Delegates
   delegate :name, to: :brand, prefix: true
   delegate :name, to: :type, prefix: true
+  delegate :name, :username, to: :user, prefix: true
 
   # Instance methods
   def last_worn_is_past

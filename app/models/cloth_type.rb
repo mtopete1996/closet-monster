@@ -12,6 +12,7 @@ class ClothType < ApplicationRecord
   # Scopes
 
   # Delegates
+  delegate :name, :username, to: :user, prefix: true
 
   # Instance methods
 

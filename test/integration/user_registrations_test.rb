@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Monster::UserRegistrationsTest < ActionDispatch::IntegrationTest
+class UserRegistrationsTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   test 'NEW user registration' do

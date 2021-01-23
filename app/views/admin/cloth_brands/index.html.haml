@@ -7,6 +7,10 @@
 = render 'shared/flash_messages' if flash.present?
 
 - if @cloth_brands.present?
+  = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloth_brands],
+                                  parameters: @parameters
   = render 'admin/cloth_brands/table', cloth_brands: @cloth_brands
+  = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloth_brands],
+                                  parameters: @parameters
 - else
   .alert.alert-info Looks like you haven't created any brand of cloth

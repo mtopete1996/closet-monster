@@ -10,6 +10,9 @@ class Monster::ClothBrandsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: 'Cloth Brands Section'
     assert_select '#userDropdown', text: 'Manuel Topete'
     assert_select 'table tr', 2
+    assert_select 'td', text: "Levi's"
+    assert_select 'td', text: 'GAP', count: 0
+    assert_select 'th', text: 'User', count: 0
   end
 
   test 'NEW cloth brands' do
