@@ -9,7 +9,9 @@ class Admin::ClothTypesTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Types of Cloth Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
-    assert_select 'table tr', 1
+    assert_select 'table tr', 5
+    assert_select 'td', text: 'Socks'
+    assert_select 'th', text: 'User'
   end
 
   test 'NEW cloth types' do

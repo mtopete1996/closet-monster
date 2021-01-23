@@ -9,7 +9,7 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Cloths Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
-    assert_select '#cloths-container .cloth', 3
+    assert_select '#cloths-container .cloth', 6
   end
 
   test 'INDEX cloths with per param' do

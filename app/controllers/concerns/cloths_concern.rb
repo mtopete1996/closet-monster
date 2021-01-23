@@ -1,11 +1,8 @@
 module ClothsConcern
   extend ActiveSupport::Concern
   include ApplicationHelper
+  include PaginationSupport
   include SuccessfulActionSupport
-
-  included do
-    before_action :user_logged
-  end
 
   def index
     @cloths = cloths
@@ -66,13 +63,5 @@ module ClothsConcern
 
   def cloths_params
     params.permit(:order_by, :page, :per)
-  end
-
-  def page
-    @page ||= params[:page] || 1
-  end
-
-  def per
-    @per ||= params[:per] || 12
   end
 end

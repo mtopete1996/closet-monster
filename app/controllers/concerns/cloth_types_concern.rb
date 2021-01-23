@@ -1,14 +1,13 @@
 module ClothTypesConcern
   extend ActiveSupport::Concern
   include ApplicationHelper
+  include PaginationSupport
   include SuccessfulActionSupport
 
-  included do
-    before_action :user_logged
-  end
-
   def index
-    @cloth_types = current_user.cloth_types
+    @cloth_types = cloth_types
+    @total_pages = cloth_types&.total_pages
+    @parameters = types_parameters
     render 'admin/cloth_types/index'
   end
 
@@ -47,11 +46,19 @@ module ClothTypesConcern
 
   attr_reader :cloth_type
 
+  def cloth_types
+    @cloth_types ||= current_user.cloth_types.alphabetically.page(page).per(per)
+  end
+
   def find_cloth_type
     @find_cloth_type ||= ClothType.find_by(id: params[:id])
   end
 
   def permited_params
     params.required(:cloth_type).permit(:name).merge(user: current_user)
+  end
+
+  def types_parameters
+    params.permit(:page, :per)
   end
 end

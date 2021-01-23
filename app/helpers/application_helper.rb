@@ -1,5 +1,6 @@
 module ApplicationHelper
   ACTIONS = %w[index new create show edit update destroy].freeze
+  MODULES = %w[admin monster]
 
   # action_index?
   # action_new?
@@ -10,6 +11,10 @@ module ApplicationHelper
   # action_destroy?
   ACTIONS.each do |act|
     define_method("action_#{act}?") { action_name == act }
+  end
+
+  MODULES.each do |mod|
+    define_method("module_#{mod}?") { module_name == mod }
   end
 
   def format_datetime(timestamp, format: :dmy)

@@ -1,10 +1,12 @@
-- cloth_types.each do |ct|
+- cloth_types.each do |type|
   %tr
-    %td= ct.name
+    %td= type.name
+    - if module_admin?
+      %td= type.user_username if type.user.present?
     %td.d-flex.justify-content-around
-      = link_to [:edit, module_name, :cloth_type, { id: ct.id }], class: 'btn btn-info' do
+      = link_to [:edit, module_name, :cloth_type, { id: type.id }], class: 'btn btn-info' do
         = fa_icon :edit
 
-      = link_to [module_name, :cloth_type, { id: ct.id }], method: :delete, class: 'btn btn-danger',
+      = link_to [module_name, :cloth_type, { id: type.id }], method: :delete, class: 'btn btn-danger',
                 data: { confirm: 'Do you really wanna get rid of this type?' }  do
         = fa_icon :'skull-crossbones'

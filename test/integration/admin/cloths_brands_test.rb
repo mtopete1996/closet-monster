@@ -9,7 +9,9 @@ class Admin::ClothBrandsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Cloth Brands Section'
     assert_select '#userDropdown', text: 'Porfirio Bayardo'
-    assert_select 'table tr', 1
+    assert_select 'table tr', 3
+    assert_select 'td', text: '725 Originals'
+    assert_select 'th', text: 'User'
   end
 
   test 'NEW cloth brands' do

@@ -12,6 +12,16 @@ class Monster::DashboardTest < ActionDispatch::IntegrationTest
     assert_select '#options a', 3
   end
 
+  test 'SHOW admin dashboard' do
+    get admin_root_path
+    assert_response :redirect
+    follow_redirect!
+
+    assert_select 'h1', text: 'Monster Dashboard'
+    assert_select '#userDropdown', text: 'Manuel Topete'
+    assert_select '#options a', 3
+  end
+
   private
 
   def setup

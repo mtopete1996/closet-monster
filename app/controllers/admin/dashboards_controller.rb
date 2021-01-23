@@ -1,7 +1,5 @@
 module Admin
-  class DashboardsController < ApplicationController
+  class DashboardsController < AdminController
     include DashboardsConcern
-
-    before_action :authorized_user
   end
 end

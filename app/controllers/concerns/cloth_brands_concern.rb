@@ -1,14 +1,13 @@
 module ClothBrandsConcern
   extend ActiveSupport::Concern
   include ApplicationHelper
+  include PaginationSupport
   include SuccessfulActionSupport
 
-  included do
-    before_action :user_logged
-  end
-
   def index
-    @cloth_brands = current_user.cloth_brands.alphabetically
+    @cloth_brands = cloth_brands
+    @total_pages = cloth_brands&.total_pages
+    @parameters = brands_parameters
     render 'admin/cloth_brands/index'
   end
 
@@ -47,6 +46,14 @@ module ClothBrandsConcern
   private
 
   attr_reader :cloth_brand
+
+  def brands_parameters
+    params.permit(:page, :per)
+  end
+
+  def cloth_brands
+    @cloth_brands ||= current_user.cloth_brands.alphabetically.page(page).per(per)
+  end
 
   def find_cloth_brand
     @find_cloth_brand ||= ClothBrand.find_by(id: params[:id])
