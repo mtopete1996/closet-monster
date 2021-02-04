@@ -13,7 +13,7 @@
   .form-group
     = f.submit class: 'btn btn-success'
 
-- if action_edit?
+- if action_edit? && controller_name == 'cloth_brands'
   = link_to 'Delete Brand', [module_name, :cloth_brand, { id: cloth_brand.id}],
                             method: :delete, id: 'delete-brand-btn', class: 'btn btn-danger',
                             data: { confirm: 'Do you really wanna get rid of this brand?' }
