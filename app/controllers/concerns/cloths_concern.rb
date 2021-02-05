@@ -66,12 +66,14 @@ module ClothsConcern
   end
 
   def per
-    @per ||= begin
-      return params[:per] if params[:per].present? || view.blank?
-      return 20 if view == 'table'
+    @per ||= per_value
+  end
 
-      12
-    end
+  def per_value
+    return params[:per] if params[:per].present? || view.blank?
+    return 20 if view == 'table'
+
+    12
   end
 
   def view

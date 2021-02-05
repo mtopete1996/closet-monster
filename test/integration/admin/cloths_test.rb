@@ -54,7 +54,8 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'CREATE cloth and create another one' do
-    post admin_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday },  other: 'Create and add other' }
+    post admin_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday },
+                                      other: 'Create and add other' }
     assert_response :redirect
 
     assert_equal 'Cloth has been saved successfully', flash[:success]
