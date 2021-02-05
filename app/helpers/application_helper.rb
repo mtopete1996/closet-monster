@@ -1,6 +1,6 @@
 module ApplicationHelper
   ACTIONS = %w[index new create show edit update destroy].freeze
-  MODULES = %w[admin monster]
+  MODULES = %w[admin monster].freeze
 
   # action_index?
   # action_new?

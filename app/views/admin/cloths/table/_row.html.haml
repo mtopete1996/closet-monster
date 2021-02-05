@@ -3,5 +3,6 @@
   %td= format_datetime(cloth.last_time_worn, format: :dby) if cloth.last_time_worn.present?
   %td= cloth.brand.name if cloth.brand.present?
   %td= cloth.type.name if cloth.type.present?
-  - if current_user.admin?
+  %td= using_now_path(cloth.id)
+  - if module_admin?
     %td= cloth.user_username
