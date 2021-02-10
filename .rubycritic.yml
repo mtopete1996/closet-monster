@@ -1,3 +1,7 @@
 paths:
   - 'app/controllers/'
+  - 'app/data'
+  - 'app/decorators'
+  - 'app/helpers'
   - 'app/models/'
+  - 'app/support/'
