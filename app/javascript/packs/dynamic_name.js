@@ -5,14 +5,12 @@ document.addEventListener("turbolinks:load", function() {
     const $nameField = $form.find('input[name="cloth[name]"]')
     const $typeField = $form.find('select[name="cloth[cloth_type_id]"]')
     const $brandField = $form.find('select[name="cloth[cloth_brand_id]"]')
-    let has_been_changed = false
 
-    $typeField.change(() => updateName())
-    $brandField.change(() => updateName())
-    $nameField.change(() => { has_been_changed = true })
+    $typeField.on('change', () => updateName())
+    $brandField.on('change', () => updateName())
 
     const updateName = () => {
-      if (!has_been_changed) {
+      if ($nameField.val() === '') {
         const selectedType = $typeField.find('option:selected').text()
         const selectedBrand = $brandField.find('option:selected').text()
         const newName = [selectedType, selectedBrand].join(' ')
