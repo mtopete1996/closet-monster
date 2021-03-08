@@ -1,5 +1,5 @@
 #filters
-  .h5.ml-5.d-none.d-lg-inline Filters
+  .h5.ml-5.d-none.d-lg-inline Order by
   .btn-group.mx-lg-3.my-2.my-lg-0{ role: :group, 'aria-label': 'filters-group' }
     - Cloth::VALID_FILTERS.each do |filter|
       - active = filter.to_s == parameters[:order_by] ? :active : nil

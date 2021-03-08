@@ -2,7 +2,7 @@
 .d-md-flex.justify-content-between
   = link_to [:new, module_name, :cloth], id: 'new-cloth',class: 'btn btn-success' do
     = fa_icon(:plus, text: 'New cloth')
-  = render 'admin/cloths/filter_buttons', cloths: @cloths, parameters: @parameters
+  = render 'admin/cloths/order_buttons', cloths: @cloths, parameters: @parameters
   = render 'admin/cloths/view_buttons', parameters: @parameters
 
 = render 'shared/page_buttons', total_pages: @total_pages, route: [module_name, :cloths],
