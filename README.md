@@ -11,6 +11,8 @@ After I had the first version where you can create a cloth, brand and type, uplo
 
 -Manuel E. Topete Ortega
 
+### Notion Wiki: https://www.notion.so/Closet-Monster-Project-c283a7f10db7475b981aeb0d7dd29361
+
 ## Setting up local
 ```
 git clone git@github.com:mtopete1996/closet-monster.git # Clone repo
