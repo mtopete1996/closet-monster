@@ -6,7 +6,7 @@
                           data: { target: '#navbarContent', toggle: :collapse }, type: :button }
     = fa_icon(:bars)
   #navbarContent.collapse.navbar-collapse
-    - if current_user.admin? && module_admin?
+    - if current_user&.admin? && module_admin?
       %ul.navbar-nav.mr-auto
         %li.nav-item
           =link_to 'Monster view', [:monster, :root], class: 'nav-link text-light'
