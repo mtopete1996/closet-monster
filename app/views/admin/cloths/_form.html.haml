@@ -5,6 +5,10 @@
 = form_with model: [module_name, cloth], method: method, local: true, id: 'cloths-form' do |f|
   = render '/shared/error_messages', resource: cloth
 
+  - if cloth.picture.attached?
+    .text-center
+      = image_tag f.object.decorate.picture_url, size: '180x180', class: 'd-block mx-auto mb-3',
+                  onerror: fallback_script
   .form-group
     = f.label 'Name:'
     = f.text_field :name, class: 'form-control', placeholder: 'Optional'
