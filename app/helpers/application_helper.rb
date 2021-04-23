@@ -17,6 +17,12 @@ module ApplicationHelper
     define_method("module_#{mod}?") { module_name == mod }
   end
 
+  def fallback_script
+    fallback_url = asset_path('admin/cloths/default.jpg')
+    %(this.onerror = null; this.src="#{fallback_url}")
+  end
+
+
   def format_datetime(timestamp, format: :dmy)
     timestamp.strftime(t("utils.date.#{format}"))
   end
