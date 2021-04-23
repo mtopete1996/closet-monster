@@ -1,6 +1,6 @@
 import { url_params, json_to_search } from './utils'
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', function() {
   const $per_param = $('.pages-per')
 
   if ($per_param) {

@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', function() {
   const $form = $('#cloths-form')
 
   if ($form) {
