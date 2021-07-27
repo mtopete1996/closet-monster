@@ -3,6 +3,7 @@ class Cloth < ApplicationRecord
   has_one_attached :picture
 
   VALID_FILTERS = %i[brand name last_time_worn type].freeze
+
   # Associations
   belongs_to :brand, class_name: 'ClothBrand', optional: true, foreign_key: :cloth_brand_id
   belongs_to :type, class_name: 'ClothType', optional: true, foreign_key: :cloth_type_id
@@ -15,9 +16,9 @@ class Cloth < ApplicationRecord
   validate :last_worn_is_past
 
   # Scopes
-  scope :by_brand, -> { left_outer_joins(:brand).order('LOWER(cloth_brands.name)') }
+  scope :by_brand, -> { left_outer_joins(:brand).non_sensitive_order('cloth_brands.name') }
   scope :by_last_time_worn, -> { order(last_time_worn: :asc) }
-  scope :by_type, -> { left_outer_joins(:type).order('LOWER(cloth_types.name)') }
+  scope :by_type, -> { left_outer_joins(:type).non_sensitive_order('cloth_types.name') }
   scope :with_data, -> { includes(:brand, :type) }
   scope :with_user, -> { includes(:user) }
 
@@ -36,10 +37,11 @@ class Cloth < ApplicationRecord
   # Class methods
   class << self
     def order_by(sentence)
-      return by_last_time_worn if sentence.blank? || sentence == 'last_time_worn'
-      return by_brand if sentence == 'brand'
-      return alphabetically if sentence == 'name'
-      return by_type if sentence == 'type'
+      sentence = sentence&.to_sym
+      return by_last_time_worn if sentence.blank? || sentence == :last_time_worn
+      return by_brand if sentence == :brand
+      return alphabetically if sentence == :name
+      return by_type if sentence == :type
 
       raise NotImplementedError, 'Order type not found'
     end
