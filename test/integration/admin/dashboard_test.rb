@@ -8,7 +8,7 @@ class Admin::DashboardTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', text: 'Admin Dashboard'
-    assert_select '#userDropdown', text: 'Porfirio Bayardo'
+    assert_select '#userDropdown', text: 'Alicia Sofia'
     assert_select '#options a', 3
   end
 
