@@ -2,7 +2,7 @@
   = render '/shared/flash_messages' if flash.present?
 
   .text-center
-    %h1.mb-4 #{module_name.titleize} Dashboard
+    %h1.mb-4 #{module_name.to_s.titleize} Dashboard
 
   #options.row.my-3
     = render 'admin/dashboards/section', name: 'Clothes', icon_name: :tshirt, path: [module_name, :cloths]

@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def module_name
     @module_name ||= begin
-      name = controller.class.module_parent.name.downcase
+      name = controller.class.module_parent.name.downcase.to_sym
       name if name != 'object'
     end
   end

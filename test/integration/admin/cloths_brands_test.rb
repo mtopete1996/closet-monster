@@ -8,10 +8,10 @@ class Admin::ClothBrandsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', text: 'Cloth Brands Section'
-    assert_select '#userDropdown', text: 'Porfirio Bayardo'
+    assert_select '#userDropdown', text: 'Alicia Sofia'
     assert_select 'table tr', 3
     assert_select 'td', text: '725 Originals'
-    assert_select 'th', text: 'User'
+    assert_select 'th', text: 'Name'
   end
 
   test 'NEW cloth brands' do
