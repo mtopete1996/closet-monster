@@ -3,7 +3,7 @@
   options = { model: [module_name, cloth_brand], method: method, local: true }
   options.delete(:local) if local_assigns[:locally] == false
 
-= form_with options do |f|
+= form_with **options do |f|
   = render '/shared/error_messages', resource: cloth_brand
 
   .form-group
