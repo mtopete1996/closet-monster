@@ -29,4 +29,12 @@ class UserTest < ActiveSupport::TestCase
     assert user.invalid?, 'User should be invalid'
     assert_not user.save, 'User should not be saved'
   end
+
+  test 'CREATE user w nil role' do
+    data = { name: :mr_test, username: :test_mr, email: 'mr_test@testing.com', password: :$eCrEt123 }
+    user = User.new data
+
+    assert user.save, 'User should be saved'
+    assert_equal :monster, user.role.to_sym
+  end
 end

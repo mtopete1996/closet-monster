@@ -17,6 +17,8 @@
                                                     data: { toggle: :dropdown }, role: :button }
             = current_user.name
           .dropdown-menu.bg-light-brown{'aria-labelledby' => :userDropdown}
+            = link_to current_user.role.titleize, '#', class: 'dropdown-item text-light'
+            .dropdown-divider
             = link_to 'Dashboard', [current_user.role.to_sym, :root], class: 'dropdown-item text-light'
             = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item text-light'
       - else
