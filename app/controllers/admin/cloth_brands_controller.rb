@@ -3,7 +3,7 @@ module Admin
     include ClothBrandsConcern
 
     def cloth_brands
-      @cloth_brands ||= ClothBrand.alphabetically.page(page).per(per)
+      @cloth_brands ||= ClothBrand.by_name.page(page).per(per)
     end
   end
 end

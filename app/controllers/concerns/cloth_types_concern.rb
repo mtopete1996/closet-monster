@@ -47,7 +47,7 @@ module ClothTypesConcern
   attr_reader :cloth_type
 
   def cloth_types
-    @cloth_types ||= current_user.cloth_types.alphabetically.page(page).per(per)
+    @cloth_types ||= current_user.cloth_types.by_name.page(page).per(per)
   end
 
   def find_cloth_type

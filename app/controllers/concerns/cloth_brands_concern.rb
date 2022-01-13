@@ -52,7 +52,7 @@ module ClothBrandsConcern
   end
 
   def cloth_brands
-    @cloth_brands ||= current_user.cloth_brands.alphabetically.page(page).per(per)
+    @cloth_brands ||= current_user.cloth_brands.by_name.page(page).per(per)
   end
 
   def find_cloth_brand
