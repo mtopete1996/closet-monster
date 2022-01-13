@@ -37,13 +37,9 @@ class Cloth < ApplicationRecord
   # Class methods
   class << self
     def order_by(sentence)
-      sentence = sentence&.to_sym
-      return by_last_time_worn if sentence.blank? || sentence == :last_time_worn
-      return by_brand if sentence == :brand
-      return alphabetically if sentence == :name
-      return by_type if sentence == :type
+      return by_name if sentence.blank?
 
-      raise NotImplementedError, 'Order type not found'
+      send("by_#{sentence}")
     end
   end
 
