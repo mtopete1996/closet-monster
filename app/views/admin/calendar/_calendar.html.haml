@@ -1,0 +1,4 @@
+= month_calendar do |date|
+  .date{id: "date-#{date}"}= l(date, format: :short)
+  - cloth_logs.where_timestamp_date(:worn_at, date).each do |log|
+    .cloth-name= link_to log.cloth_name, [:edit, module_name, :cloth, { id: log.cloth_id }], class: 'link'

@@ -3,10 +3,9 @@ module ClothLogsConcern
   include PaginationSupport
   include SuccessfulActionSupport
 
-  def index
+  def show
     @cloth_logs = cloth_logs
-    @total_pages = cloth_logs.total_pages
-    render 'admin/cloth_logs/index'
+    render 'admin/calendar/show'
   end
 
   private
@@ -14,6 +13,6 @@ module ClothLogsConcern
   attr_reader :cloth_log
 
   def cloth_logs
-    @cloth_logs ||= current_user.cloth_logs.page(page).per(per)
+    @cloth_logs ||= current_user.cloth_logs.includes(:cloth)
   end
 end

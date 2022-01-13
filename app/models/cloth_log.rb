@@ -12,6 +12,7 @@ class ClothLog < ApplicationRecord
   # Scopes
 
   # Delegates
+  delegate :id, :name, to: :cloth, prefix: true
 
   # Instance methods
 

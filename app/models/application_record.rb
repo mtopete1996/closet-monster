@@ -1,4 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
+  extend DatetimeSupport
+
   self.abstract_class = true
 
   # Scopes
