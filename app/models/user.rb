@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :cloths
   has_many :cloth_types
   has_many :cloth_brands
-  has_many :logs, through: :cloths
+  has_many :cloth_logs, through: :cloths, source: :logs
 
   # Validations
   validates :name, :username, :email, :role, presence: true
