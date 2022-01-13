@@ -22,7 +22,7 @@ module ApplicationHelper
     %(this.onerror = null; this.src="#{fallback_url}")
   end
 
-  def format_datetime(timestamp, format: :dmy)
+  def format_datetime(timestamp, format: :short)
     timestamp.strftime(t("utils.date.#{format}"))
   end
 

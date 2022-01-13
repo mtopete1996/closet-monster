@@ -10,7 +10,7 @@
       - if cloth.last_time_worn.present?
         .last-time-worn
           %strong Last time worn
-          = format_datetime(cloth.last_time_worn, format: :dby)
+          = format_datetime(cloth.last_time_worn, format: :short_month)
 
       - if cloth.brand.present?
         .brand

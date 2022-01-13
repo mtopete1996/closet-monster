@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_log:
+  cloth: cloth_white_shirt
+
+second_log:
+  cloth: cloth_black_pants
