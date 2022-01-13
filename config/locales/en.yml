@@ -14,6 +14,7 @@ en:
       text: This system is always improving, if you have any kind of problems let us know on the support section
   utils:
     date:
-      dmy: '%-d/%_m/%y'
-      ndmy: '%a, %-d/%_m/%y'
-      dby: '%-d/%b/%y'
+      short: '%-d/%_m/%y'
+      short_complete: '%a, %-d/%_m/%y'
+      short_month: '%-d/%b/%y'
+      complete: '%a, %B %-d %Y'

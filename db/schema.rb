@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_053708) do
+ActiveRecord::Schema.define(version: 2022_01_13_173046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2020_12_06_053708) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_cloth_brands_on_user_id"
+  end
+
+  create_table "cloth_logs", force: :cascade do |t|
+    t.datetime "worn_at", null: false
+    t.bigint "cloth_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cloth_id"], name: "index_cloth_logs_on_cloth_id"
   end
 
   create_table "cloth_types", force: :cascade do |t|
@@ -81,13 +89,14 @@ ActiveRecord::Schema.define(version: 2020_12_06_053708) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role", null: false
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cloth_brands", "users"
+  add_foreign_key "cloth_logs", "cloths"
   add_foreign_key "cloth_types", "users"
   add_foreign_key "cloths", "cloth_brands"
   add_foreign_key "cloths", "cloth_types"

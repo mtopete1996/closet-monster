@@ -9,6 +9,8 @@ class Cloth < ApplicationRecord
   belongs_to :type, class_name: 'ClothType', optional: true, foreign_key: :cloth_type_id
   belongs_to :user
 
+  has_many :logs, class_name: 'ClothLog', dependent: :destroy
+
   # Validations
   validates :name, :enabled, presence: true
   validates :picture, content_type: ['image/png', 'image/jpg', 'image/jpeg']
