@@ -9,7 +9,7 @@ class Monster::DashboardTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Monster Dashboard'
     assert_select '#userDropdown', text: 'Manuel Topete'
-    assert_select '#options a', 3
+    assert_select '#options a', 4
   end
 
   test 'SHOW admin dashboard' do
@@ -19,7 +19,7 @@ class Monster::DashboardTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', text: 'Monster Dashboard'
     assert_select '#userDropdown', text: 'Manuel Topete'
-    assert_select '#options a', 3
+    assert_select '#options a', 4
   end
 
   private

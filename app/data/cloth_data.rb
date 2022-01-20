@@ -7,23 +7,23 @@ class ClothData
 
   attr_reader :data, :id, :user
 
-  def cloth
-    @cloth ||= new_or_edit
+  def brands_options
+    @brands_options ||= ClothBrand.user_brands(user).by_name.pluck :name, :id
   end
 
-  def find_cloth
-    @find_cloth ||= Cloth.find_by(id: id)
+  def cloth
+    @cloth ||= new_or_edit
   end
 
   def types_options
     @types_options ||= ClothType.user_types(user).by_name.pluck :name, :id
   end
 
-  def brands_options
-    @brands_options ||= ClothBrand.user_brands(user).by_name.pluck :name, :id
-  end
-
   private
+
+  def find_cloth
+    @find_cloth ||= Cloth.find_by(id: id)
+  end
 
   def new_or_edit
     return find_cloth if id

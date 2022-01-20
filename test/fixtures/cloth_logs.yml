@@ -7,3 +7,19 @@ first_log:
 second_log:
   worn_at: <%= '2020-11-12'.to_date %>
   cloth: cloth_black_pants
+
+third_log:
+  worn_at: <%= DateTime.new(2020, 11, 15, 13, 14, 12) %>
+  cloth: cloth_black_pants
+
+fourth_log:
+  worn_at: <%= '2020-11-16'.to_date %>
+  cloth: cloth_black_pants
+
+fifth_log:
+  worn_at: <%= '2021-11-16'.to_date %>
+  cloth: cloth_brown_shirt
+
+sixth_log:
+  worn_at: <%= '2021-11-03'.to_date %>
+  cloth: cloth_blue_pants
