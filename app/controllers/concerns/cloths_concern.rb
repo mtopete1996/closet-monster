@@ -19,7 +19,7 @@ module ClothsConcern
   def create
     @cloth_data = cloth_data(cloth_params)
     another_path = [:new, module_name, :cloth] if params[:other]
-    return save_successful(:cloths, path: another_path) if cloth_data.cloth.save
+    return save_successful(:cloths, path: another_path) if cloth_data.persist
 
     render 'admin/cloths/new'
   end
@@ -30,8 +30,8 @@ module ClothsConcern
   end
 
   def update
-    @cloth_data = cloth_data(id: params[:id])
-    return save_successful(:cloths, action: :updated) if cloth_data.cloth.update(cloth_params)
+    @cloth_data = cloth_data(cloth_params.merge(id: params[:id]))
+    return save_successful(:cloths, action: :updated) if cloth_data.persist
 
     render 'admin/cloths/edit'
   end

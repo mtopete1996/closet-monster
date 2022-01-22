@@ -1,8 +1,8 @@
 user_admin:
   name: Alicia Sofia
-  username: porfiriobayis
+  username: alisofi
   role: admin
-  email: porfirio@test.com
+  email: sofi@test.com
 
 user_monster:
   name: Manuel Topete
