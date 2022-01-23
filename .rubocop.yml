@@ -14,9 +14,6 @@ AllCops:
 Layout/LineLength:
   Max: 110
 
-Lint/NoReturnInBeginEndBlocks:
-  Enabled: false
-
 Style/ClassAndModuleChildren:
   Exclude:
     - 'test/**/*'
