@@ -42,24 +42,26 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'CREATE cloth' do
-    post admin_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday } }
+    params = { cloth: { name: 'Testing cloth', last_time_worn: Date.yesterday } }
+    post admin_cloths_path, params: params
     assert_response :redirect
 
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth has been saved successfully', flash[:success]
-    assert Cloth.where(name: :my_tshirt)
+    assert Cloth.where(name: 'Testing cloth'), 'Cloth named Testing cloth have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Cloths Section'
   end
 
   test 'CREATE cloth and create another one' do
-    post admin_cloths_path, params: { cloth: { name: :my_tshirt, last_time_worn: Date.yesterday },
-                                      other: 'Create and add other' }
+    params = { cloth: { name: 'Testing cloth', last_time_worn: Date.yesterday },
+               other: 'Create and add other' }
+    post admin_cloths_path, params: params
     assert_response :redirect
 
     assert_equal 'Cloth has been saved successfully', flash[:success]
-    assert Cloth.where(name: :my_tshirt)
+    assert Cloth.where(name: 'Testing cloth'), 'Cloth named Testing cloth have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Create new cloth'
@@ -75,13 +77,13 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'UPDATE cloth' do
-    put admin_cloth_path(cloths(:cloth_white_shirt)), params: { cloth: { name: :testing,
-                                                                         last_time_worn: 3.days.before } }
+    params = { cloth: { name: 'Testing cloth', last_time_worn: 3.days.before } }
+    put admin_cloth_path(cloths(:cloth_white_shirt)), params: params
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth has been updated successfully', flash[:success]
-    assert Cloth.where(name: 'testing').exists?
+    assert Cloth.where(name: 'Testing cloth').exists?, 'Cloth named Testing cloth have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Cloths Section'
@@ -91,9 +93,10 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
     delete admin_cloth_path(cloths(:cloth_white_shirt))
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth has been deleted successfully', flash[:success]
-    assert !Cloth.where(name: 'testing').exists?
+    assert_not Cloth.where(name: 'The White Shirt').exists?,
+               %q(Cloth named "The White Shirt" cloth don't have to exist)
 
     follow_redirect!
     assert_select 'h1', text: 'Cloths Section'

@@ -1,8 +1,8 @@
 module ClothTypesConcern
   extend ActiveSupport::Concern
   include ApplicationHelper
-  include PaginationSupport
-  include SuccessfulActionSupport
+  include Support::Paginateable
+  include Support::Successable
 
   def index
     @cloth_types = cloth_types

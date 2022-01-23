@@ -11,6 +11,7 @@ class Monster::ClothsTest < ActionDispatch::IntegrationTest
     assert_select '#userDropdown', text: 'Manuel Topete'
     assert_select '#calendar'
     assert_select '.cloth-name', count: 2
+
     assert_select '#date-2021-11-03+.cloth-name', text: 'Blue pants'
     assert_select '#date-2021-11-16+.cloth-name', text: 'Brown Shirt'
   end

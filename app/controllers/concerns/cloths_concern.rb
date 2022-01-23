@@ -1,8 +1,7 @@
 module ClothsConcern
   extend ActiveSupport::Concern
   include ApplicationHelper
-  include PaginationSupport
-  include SuccessfulActionSupport
+  include Support::Successable
 
   def index
     @cloths = cloths
@@ -19,7 +18,7 @@ module ClothsConcern
   def create
     @cloth_data = cloth_data(cloth_params)
     another_path = [:new, module_name, :cloth] if params[:other]
-    return save_successful(:cloths, path: another_path) if cloth_data.cloth.save
+    return save_successful(:cloths, path: another_path) if cloth_data.persist
 
     render 'admin/cloths/new'
   end
@@ -30,8 +29,8 @@ module ClothsConcern
   end
 
   def update
-    @cloth_data = cloth_data(id: params[:id])
-    return save_successful(:cloths, action: :updated) if cloth_data.cloth.update(cloth_params)
+    @cloth_data = cloth_data(cloth_params.merge(id: params[:id]))
+    return save_successful(:cloths, action: :updated) if cloth_data.persist
 
     render 'admin/cloths/edit'
   end
@@ -65,15 +64,24 @@ module ClothsConcern
     params.permit(:order_by, :page, :per, :view)
   end
 
-  def per
-    @per ||= per_value
+  def page
+    @page ||=
+      if current_user.cloths.page(params[:page]).per(per).exists?
+        params[:page]
+      else
+        1
+      end
   end
 
-  def per_value
-    return params[:per] if params[:per].present? || view.blank?
-    return 20 if view == 'table'
-
-    12
+  def per
+    @per ||=
+      if params[:per].present? || view.blank?
+        params[:per]
+      elsif view == 'table'
+        20
+      else
+        12
+      end
   end
 
   def view

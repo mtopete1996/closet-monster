@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.create data
 
     assert_not_nil user
-    assert user.valid?, 'User should be valid'
+    assert user.valid?, 'User have to be valid'
     assert_equal 'mr_test', user.name
     assert_equal 'test_mr', user.username
     assert_equal 'mr_test@testing.com', user.email
@@ -17,8 +17,8 @@ class UserTest < ActiveSupport::TestCase
     user = User.new data
 
     assert_not_nil user
-    assert user.invalid?, 'User should be invalid'
-    assert_not user.save, 'User should not be saved'
+    assert user.invalid?, 'User have to be invalid'
+    assert_not user.save, "User don't have to be saved"
   end
 
   test 'CREATE user w nil email' do
@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new data
 
     assert_not_nil user
-    assert user.invalid?, 'User should be invalid'
-    assert_not user.save, 'User should not be saved'
+    assert user.invalid?, 'User have to be invalid'
+    assert_not user.save, "User don't have to be saved"
   end
 end

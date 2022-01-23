@@ -12,22 +12,20 @@ class ClothData
   end
 
   def cloth
-    @cloth ||= new_or_edit
+    @cloth ||=
+      if id.present?
+        Cloth.find_by(id: id)
+      else
+        Cloth.new(data)
+      end
+  end
+
+  def persist
+    cloth.assign_attributes(data) unless cloth.new_record?
+    cloth.save
   end
 
   def types_options
     @types_options ||= ClothType.user_types(user).by_name.pluck :name, :id
-  end
-
-  private
-
-  def find_cloth
-    @find_cloth ||= Cloth.find_by(id: id)
-  end
-
-  def new_or_edit
-    return find_cloth if id
-
-    Cloth.new(data)
   end
 end

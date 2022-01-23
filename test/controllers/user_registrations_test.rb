@@ -16,7 +16,7 @@ class UserRegistrationsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
 
-    assert User.find_by(email: 'test@test.test'), 'A user with email: "test@test.test" should exist'
+    assert User.find_by(email: 'test@test.test'), 'A user with email: "test@test.test" have to exist'
     assert_select 'h1', text: 'Monster Dashboard'
     assert_select '#userDropdown', text: 'test'
   end
@@ -28,6 +28,7 @@ class UserRegistrationsTest < ActionDispatch::IntegrationTest
 
     assert_select '.alert li', text: "Email can't be blank"
     assert_select '.alert li', text: "Name can't be blank"
-    assert_not User.find_by(email: 'test@test.test'), 'A user with email: "test@test.test" should not exist'
+    assert_not User.find_by(email: 'test@test.test'),
+               %q(A user with email: "test@test.test" don't have to exist)
   end
 end

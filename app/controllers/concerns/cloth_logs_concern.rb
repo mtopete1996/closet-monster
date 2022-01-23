@@ -1,7 +1,7 @@
 module ClothLogsConcern
   include ApplicationHelper
-  include PaginationSupport
-  include SuccessfulActionSupport
+  include Support::Paginateable
+  include Support::Successable
 
   def show
     @cloth_logs = cloth_logs
