@@ -1,29 +1,23 @@
 cloth_white_shirt:
   name: The White Shirt
-  last_time_worn: null
   user: user_admin
 
 cloth_black_pants:
   name: Black Pants
-  last_time_worn: 2010-10-10
   user: user_admin
 
 cloth_brown_shirt:
   name: Brown Shirt
-  last_time_worn: 2010-11-12
   user: user_monster
 
 cloth_blue_pants:
   name: Blue pants
-  last_time_worn: 2014-01-11
   user: user_monster
 
 cloth_test:
   name: Test cloth
-  last_time_worn: 2015-02-12
   user: user_monster_extra
 
 cloth_test_extra:
   name: Extra test cloth
-  last_time_worn: 2016-03-13
   user: user_monster_extra

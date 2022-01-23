@@ -7,10 +7,10 @@
         = image_tag cloth.picture_url, size: '180x180', class: 'd-block mx-auto mb-3',
                     onerror: fallback_script
       %h4= cloth.name
-      - if cloth.last_time_worn.present?
+      - if cloth.worn_at.present?
         .last-time-worn
           %strong Last time worn
-          = format_datetime(cloth.last_time_worn, format: :short_month)
+          = format_datetime(cloth.worn_at, format: :short_month)
 
       - if cloth.brand.present?
         .brand
@@ -27,5 +27,4 @@
           %strong User
           = cloth.user_username
 
-    = link_to 'Using now!', [module_name, :cloth, { id: cloth.id, cloth: { last_time_worn: Date.today } }],
-              method: 'PUT', class: 'btn btn-success my-3'
+      = using_now_path(cloth.id)

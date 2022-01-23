@@ -52,7 +52,7 @@ module ClothsConcern
   end
 
   def cloth_params
-    params.required(:cloth).permit(:name, :last_time_worn, :picture, :cloth_type_id, :cloth_brand_id)
+    params.required(:cloth).permit(:name, :worn_at, :picture, :cloth_type_id, :cloth_brand_id)
   end
 
   def cloths

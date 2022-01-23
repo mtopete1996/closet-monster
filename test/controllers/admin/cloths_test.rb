@@ -42,20 +42,22 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'CREATE cloth' do
-    params = { cloth: { name: 'Testing cloth', last_time_worn: Date.yesterday } }
-    post admin_cloths_path, params: params
+    params = { cloth: { name: 'Testing cloth', worn_at: Date.yesterday } }
+    post monster_cloths_path, params: params
     assert_response :redirect
 
     assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth has been saved successfully', flash[:success]
-    assert Cloth.where(name: 'Testing cloth'), 'Cloth named Testing cloth have to exist'
+    found_cloth = Cloth.where(name: 'Testing cloth').first
+    assert found_cloth, 'Cloth named Testing cloth have to exist'
+    assert_equal Date.yesterday, found_cloth.worn_at
 
     follow_redirect!
     assert_select 'h1', text: 'Cloths Section'
   end
 
   test 'CREATE cloth and create another one' do
-    params = { cloth: { name: 'Testing cloth', last_time_worn: Date.yesterday },
+    params = { cloth: { name: 'Testing cloth', worn_at: Date.yesterday },
                other: 'Create and add other' }
     post admin_cloths_path, params: params
     assert_response :redirect
@@ -77,13 +79,16 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   test 'UPDATE cloth' do
-    params = { cloth: { name: 'Testing cloth', last_time_worn: 3.days.before } }
-    put admin_cloth_path(cloths(:cloth_white_shirt)), params: params
+    params = { cloth: { name: 'Testing cloth', worn_at: 3.days.before } }
+    put monster_cloth_path(cloths(:cloth_white_shirt)), params: params
 
     assert_response :redirect
     assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth has been updated successfully', flash[:success]
     assert Cloth.where(name: 'Testing cloth').exists?, 'Cloth named Testing cloth have to exist'
+    found_cloth = Cloth.where(name: 'Testing cloth').first
+    assert found_cloth, 'Cloth named Testing cloth have to exist'
+    assert_equal 3.days.before.to_date, found_cloth.worn_at.to_date
 
     follow_redirect!
     assert_select 'h1', text: 'Cloths Section'

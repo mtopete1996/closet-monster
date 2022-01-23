@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :cloth_brands, except: :show
     resources :cloth_types, except: :show
     resources :cloths, except: :show
-    resource :calendar, only: :show, controller: :cloth_logs
+    resource :calendar, only: %i[create show], controller: :cloth_logs
   end
 
   # /monster
@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     resources :cloth_brands, except: :show
     resources :cloth_types, except: :show
     resources :cloths, except: :show
-    resource :calendar, only: :show, controller: :cloth_logs
+    resource :calendar, only: %i[create show], controller: :cloth_logs
   end
 end
