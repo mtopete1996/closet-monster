@@ -14,3 +14,5 @@ test:
 production:
   <<: *default
   database: closet_monster_prod
+  user: rails
+  password: <%= Rails.application.credentials.dig(:postgresql, :production_password)
