@@ -3,6 +3,13 @@ require 'test_helper'
 class Admin::ClothsTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
+  test 'CREATE calendar w valid params' do
+    post admin_calendar_path, params: { worn_at: '2020-02-01', cloth_id: white_shirt.id }
+    assert_response :redirect
+    assert_equal flash[:success], 'Log has been saved successfully'
+    assert_equal white_shirt.logs.count, 2
+  end
+
   test 'SHOW calendar' do
     get admin_calendar_path, params: { start_date: '2020-11-01'.to_date }
     assert_response :success
@@ -19,6 +26,10 @@ class Admin::ClothsTest < ActionDispatch::IntegrationTest
   end
 
   private
+
+  def white_shirt
+    @white_shirt ||= cloths(:cloth_white_shirt)
+  end
 
   def setup
     sign_in users(:user_admin)
