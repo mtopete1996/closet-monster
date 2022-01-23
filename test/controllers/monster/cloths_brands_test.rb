@@ -24,23 +24,24 @@ class Monster::ClothBrandsTest < ActionDispatch::IntegrationTest
   end
 
   test 'CREATE cloth brand' do
-    post monster_cloth_brands_path, params: { cloth_brand: { name: :test_brand } }
+    post monster_cloth_brands_path, params: { cloth_brand: { name: 'Test brand' } }
     assert_response :redirect
 
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth brand has been saved successfully', flash[:success]
-    assert ClothBrand.where(name: :test_brand)
+    assert ClothBrand.where(name: 'Test brand').exists?,
+           'Cloth Brand "Test brand" have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Cloth Brands Section'
   end
 
   test 'CREATE cloth brand with ajax' do
-    post monster_cloth_brands_path, params: { cloth_brand: { name: :test_brand_xhr } }, xhr: true
+    post monster_cloth_brands_path, params: { cloth_brand: { name: 'Test brand XHR' } }, xhr: true
     assert_response :success
 
-    assert flash[:success].present?, 'A flash success should exist'
-    assert_equal 'test_brand_xhr', ClothBrand.recent.take.name
+    assert flash[:success].present?, 'A flash success have to be present'
+    assert_equal 'Test brand XHR', ClothBrand.recent.take.name
   end
 
   test 'EDIT cloth brand' do
@@ -52,13 +53,14 @@ class Monster::ClothBrandsTest < ActionDispatch::IntegrationTest
   end
 
   test 'UPDATE cloth brand' do
-    params = { cloth_brand: { name: :testing } }
+    params = { cloth_brand: { name: 'Testing brand' } }
     put monster_cloth_brand_path(cloth_brands(:cloth_brand_levis)), params: params
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth brand has been updated successfully', flash[:success]
-    assert ClothBrand.where(name: 'testing').exists?
+    assert ClothBrand.where(name: 'Testing brand').exists?,
+           'Cloth Brand "Test brand" have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Cloth Brands Section'
@@ -68,9 +70,10 @@ class Monster::ClothBrandsTest < ActionDispatch::IntegrationTest
     delete monster_cloth_brand_path(cloth_brands(:cloth_brand_levis))
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to be present'
     assert_equal 'Cloth brand has been deleted successfully', flash[:success]
-    assert !ClothBrand.where(name: 'testing').exists?
+    assert_not ClothBrand.where(name: "Levi's").exists?,
+               %q(Cloth Brand named "Levi's" don't have to exist)
 
     follow_redirect!
     assert_select 'h1', text: 'Cloth Brands Section'

@@ -24,12 +24,13 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
   end
 
   test 'CREATE cloth type' do
-    post monster_cloth_types_path, params: { cloth_type: { name: :test_type } }
+    post monster_cloth_types_path, params: { cloth_type: { name: 'Test type' } }
     assert_response :redirect
 
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to exist'
     assert_equal 'Cloth type has been saved successfully', flash[:success]
-    assert ClothType.where(name: :test_type)
+    assert ClothType.where(name: 'Test type').exists?,
+           'Cloth type "Test type" have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Types of Cloth Section'
@@ -44,13 +45,14 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
   end
 
   test 'UPDATE cloth type' do
-    params = { cloth_type: { name: :testing } }
+    params = { cloth_type: { name: 'Testing type' } }
     put monster_cloth_type_path(cloth_types(:cloth_type_shirts)), params: params
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to exist'
     assert_equal 'Cloth type has been updated successfully', flash[:success]
-    assert ClothType.where(name: 'testing').exists?
+    assert ClothType.where(name: 'Testing type').exists?,
+           'Cloth type "Test type" have to exist'
 
     follow_redirect!
     assert_select 'h1', text: 'Types of Cloth Section'
@@ -60,9 +62,10 @@ class Monster::ClothTypesTest < ActionDispatch::IntegrationTest
     delete monster_cloth_type_path(cloth_types(:cloth_type_shirts))
 
     assert_response :redirect
-    assert flash[:success].present?, 'A flash success should exist'
+    assert flash[:success].present?, 'A flash success have to exist'
     assert_equal 'Cloth type has been deleted successfully', flash[:success]
-    assert !ClothType.where(name: 'testing').exists?
+    assert_not ClothType.where(name: 'Shirts').exists?,
+               %q(Cloth Brand named "Shirts" don't have to exist)
 
     follow_redirect!
     assert_select 'h1', text: 'Types of Cloth Section'
