@@ -13,7 +13,6 @@ class ClothData
 
   def cloth
     @cloth ||=
-      ## NOTE: For some reason I can't use a guard clause for this inside a block
       if id.present?
         Cloth.find_by(id: id)
       else
