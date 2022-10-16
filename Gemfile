@@ -6,21 +6,24 @@ ruby '2.7.2'
 gem 'active_storage_validations', '~> 0.9.0'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootstrap', '~> 5.2.2'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'font_awesome5_rails', '~> 1.3'
 gem 'haml', '~> 5.2'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'puma', '~> 4.1'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
+gem 'rails', '~> 7.0', '>= 7.0.4'
 gem 'rubocop', '~> 1.22', '>= 1.22.1'
 gem 'sass-rails', '>= 6'
 gem 'simple_calendar', '~> 2.4', '>= 2.4.3'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
 gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -28,8 +31,6 @@ end
 
 group :development do
   gem 'listen', '~> 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end
 
