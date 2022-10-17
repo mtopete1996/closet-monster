@@ -1,29 +1,32 @@
 - title_link = current_user.present? ? root_path : '#'
-%nav.navbar.navbar-expand-lg.bg-light-brown.mb-3
-  %navbar-brand
-    = link_to 'Closet Monster', title_link, class: 'h5 text-light mt-1'
-  %button.navbar-toggler{ aria: { controls: :navbarContent, expanded: false, label: 'Toggle navigation' },
-                          data: { target: '#navbarContent', toggle: :collapse }, type: :button }
-    = fa_icon(:bars)
-  #navbarContent.collapse.navbar-collapse
-    - if current_user&.admin? && module_admin?
-      %ul.navbar-nav.mr-auto
+
+%nav.navbar.navbar-expand-lg.navbar-light.bg-cm-primary
+  .container-fluid
+    = link_to 'Closet Monster', root_path, class: 'h5 text-light my-1 navbar-brand'
+    = link_to '#', type: :button, data: { 'bs-toggle': :collapse, 'bs-target': '#navbarContent' }, aria: { controls: 'navbarContent', expanded: false, label: 'Toggle navigation' } do
+      %span.navbar-toggler-icon
+    #navbarContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
         %li.nav-item
           =link_to 'Monster view', [:monster, :root], class: 'nav-link text-light'
-    %ul.navbar-nav.ml-auto
-      - if current_user
-        %li.nav-item.dropdown
-          %a#userDropdown.nav-link.dropdown-toggle.text-light{ aria: { expanded: false, haspopup: true },
-                                                    data: { toggle: :dropdown }, role: :button }
-            = current_user.name
-          .dropdown-menu.bg-light-brown{'aria-labelledby' => :userDropdown}
-            = link_to 'Dashboard', [current_user.role.to_sym, :root], class: 'dropdown-item text-light'
-            = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item text-light'
-      - else
-        - if controller_name != 'log_in'
-          %li.nav-item
-            = link_to 'Sign in', new_user_session_path, id: 'signin-btn', class: 'nav-link text-light'
-            %span.sr-only (current)
-          %li.nav-item
-            = link_to 'Sign up', new_user_registration_path, id: 'signup-btn', class: 'nav-link text-light'
-            %span.sr-only (current)
+-#     - if current_user&.admin? && module_admin?
+-#       %ul.navbar-nav.mr-auto
+-#         %li.nav-item
+-#           =link_to 'Monster view', [:monster, :root], class: 'nav-link text-light'
+-#     %ul.navbar-nav.ml-auto
+-#       - if current_user
+-#         %li.nav-item.dropdown
+-#           %a#userDropdown.nav-link.dropdown-toggle.text-light{ aria: { expanded: false, haspopup: true },
+-#                                                     data: { toggle: :dropdown }, role: :button }
+-#             = current_user.name
+-#           .dropdown-menu.bg-primary{'aria-labelledby' => :userDropdown}
+-#             = link_to 'Dashboard', [current_user.role.to_sym, :root], class: 'dropdown-item text-light'
+-#             = link_to 'Log Out', destroy_user_session_path, method: 'DELETE', class: 'dropdown-item text-light'
+-#       - else
+-#         - if controller_name != 'log_in'
+-#           %li.nav-item
+-#             = link_to 'Sign in', new_user_session_path, id: 'signin-btn', class: 'nav-link text-light'
+-#             %span.sr-only (current)
+-#           %li.nav-item
+-#             = link_to 'Sign up', new_user_registration_path, id: 'signup-btn', class: 'nav-link text-light'
+-#             %span.sr-only (current)

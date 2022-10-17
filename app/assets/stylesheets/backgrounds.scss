@@ -1,7 +1,12 @@
 @import 'colors';
 
+// Brand colors
+.bg-cm-primary { background: $primary-color; }
+.bg-cm-secondary { background: $secondary-color; }
+
+// Old brand colors
 .bg-gray { background: $gray; }
-.bg-light-brown { background: $light-brown; }
+.bg-primary { background: $light-brown; }
 .bg-brown { background: $brown; }
 .bg-melon { background: $melon; }
 .bg-blue-charcoal { background: $blue-charcoal; }
